@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones | Turin Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-nav shadow-lg py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent cursor-pointer" onclick="window.location.href='index.html'">
+                TURIN DEVELOPER
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html#servicios" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Servicios</a>
+                <a href="index.html#beneficios" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Beneficios</a>
+                <a href="index.html#portafolio" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Portafolio</a>
+                <a href="index.html#contacto" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Contacto</a>
+                <a href="index.html#contacto" class="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+                    Cotizar Ahora
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="12" x2="20" y2="12"/>
+                        <line x1="4" y1="6" x2="20" y2="6"/>
+                        <line x1="4" y1="18" x2="20" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu" class="md:hidden bg-slate-900 absolute w-full border-b border-slate-800 hidden">
+            <div class="px-6 py-4 space-y-4 flex flex-col">
+                <a href="index.html#servicios" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Servicios</a>
+                <a href="index.html#beneficios" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Beneficios</a>
+                <a href="index.html#portafolio" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Portafolio</a>
+                <a href="index.html#contacto" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-block px-4 py-1.5 mb-6 border border-cyan-500/30 rounded-full bg-cyan-500/10 backdrop-blur-sm">
+                    <span class="text-cyan-400 font-medium text-sm tracking-wide">INFORMACIÓN LEGAL</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-8 leading-tight">
+                    Términos y 
+                    <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                        Condiciones
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Condiciones de uso de nuestros servicios de desarrollo web profesional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-20 bg-slate-900/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-slate-800/50 rounded-2xl p-8 md:p-12 border border-slate-700">
+                    
+                    <div class="mb-8">
+                        <p class="text-slate-400 mb-4">
+                            <strong>Última actualización:</strong> Enero 2026
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Al contratar los servicios de Turin Developer, usted acepta los siguientes términos y condiciones. 
+                            Le recomendamos leer cuidadosamente este documento.
+                        </p>
+                    </div>
+
+                    <!-- Sección 1 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">1. Definiciones</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>"Turin Developer"</strong> se refiere a nuestros servicios de desarrollo web profesional.</p>
+                            <p><strong>"Cliente"</strong> se refiere a la persona física o moral que contrata nuestros servicios.</p>
+                            <p><strong>"Proyecto"</strong> se refiere al trabajo de desarrollo web acordado entre las partes.</p>
+                            <p><strong>"Entregables"</strong> se refiere a los archivos, códigos y materiales que forman parte del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 2 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">2. Servicios Ofrecidos</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Ofrecemos servicios de:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li>Desarrollo de sitios web responsivos</li>
+                                <li>Diseño de interfaces de usuario (UI/UX)</li>
+                                <li>Optimización para motores de búsqueda (SEO básico)</li>
+                                <li>Mantenimiento y soporte técnico</li>
+                                <li>Consultoría en tecnologías web</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 3 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">3. Proceso de Trabajo</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>3.1 Cotización:</strong> Proporcionamos cotizaciones gratuitas basadas en los requerimientos del cliente.</p>
+                            <p><strong>3.2 Contrato:</strong> Los proyectos inician con la firma de un contrato y el pago del anticipo acordado.</p>
+                            <p><strong>3.3 Desarrollo:</strong> Trabajamos en etapas con revisiones periódicas del cliente.</p>
+                            <p><strong>3.4 Entrega:</strong> Los entregables se proporcionan una vez completado el pago total.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 4 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">4. Pagos y Facturación</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>4.1 Anticipo:</strong> Se requiere un anticipo del 50% para iniciar cualquier proyecto.</p>
+                            <p><strong>4.2 Pago Final:</strong> El 50% restante se paga al completar el proyecto.</p>
+                            <p><strong>4.3 Métodos de Pago:</strong> Aceptamos transferencias bancarias y pagos en efectivo.</p>
+                            <p><strong>4.4 Retrasos:</strong> Los pagos tardíos pueden resultar en la suspensión temporal del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 5 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">5. Modificaciones y Cambios</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>5.1 Cambios Menores:</strong> Incluidos en el precio original (hasta 2 rondas de revisión).</p>
+                            <p><strong>5.2 Cambios Mayores:</strong> Modificaciones significativas al alcance original tendrán costo adicional.</p>
+                            <p><strong>5.3 Aprobación:</strong> Todos los cambios deben ser aprobados por escrito por ambas partes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 6 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">6. Propiedad Intelectual</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>6.1 Código Personalizado:</strong> El cliente obtiene los derechos del código desarrollado específicamente para su proyecto.</p>
+                            <p><strong>6.2 Librerías y Frameworks:</strong> Las tecnologías de terceros mantienen sus licencias originales.</p>
+                            <p><strong>6.3 Diseños:</strong> Los diseños creados son propiedad del cliente una vez completado el pago.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 7 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">7. Garantías y Limitaciones</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>7.1 Garantía:</strong> Ofrecemos 30 días de soporte gratuito para corrección de errores.</p>
+                            <p><strong>7.2 Limitaciones:</strong> No nos hacemos responsables por pérdidas de datos o interrupciones del servicio de hosting.</p>
+                            <p><strong>7.3 Compatibilidad:</strong> Garantizamos compatibilidad con navegadores modernos principales.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 8 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">8. Cancelación y Reembolsos</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>8.1 Cancelación por el Cliente:</strong> El cliente puede cancelar con 48 horas de anticipación.</p>
+                            <p><strong>8.2 Trabajo Realizado:</strong> Se cobrará proporcionalmente el trabajo ya completado.</p>
+                            <p><strong>8.3 Reembolsos:</strong> Los anticipos no son reembolsables una vez iniciado el proyecto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 9 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">9. Confidencialidad</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Nos comprometemos a mantener la confidencialidad de toda la información proporcionada por el cliente durante el desarrollo del proyecto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 10 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">10. Contacto</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Para cualquier duda sobre estos términos, puede contactarnos:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li>Email: maalcantarasmv3@gmail.com</li>
+                                <li>WhatsApp: +52 55 3799 0742</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 p-6 bg-slate-700/50 rounded-lg border border-slate-600">
+                        <p class="text-slate-400 text-sm">
+                            <strong>Nota Legal:</strong> Estos términos y condiciones están sujetos a las leyes mexicanas. 
+                            Cualquier disputa será resuelta en los tribunales competentes de México. 
+                            Turin Developer se reserva el derecho de modificar estos términos con previo aviso.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 border-t border-slate-900 text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-500 text-sm mb-4 md:mb-0">
+                    © 2026 Turin Developer | Todos los derechos reservados.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <a href="acerca-de.html" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        Acerca de
+                    </a>
+                    <a href="terminos-y-condiciones.html" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        Términos y Condiciones
+                    </a>
+                    <a href="aviso-de-privacidad.html" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        Aviso de Privacidad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

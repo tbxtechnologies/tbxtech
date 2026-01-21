@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso de Privacidad | Turin Developer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-nav shadow-lg py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent cursor-pointer" onclick="window.location.href='index.html'">
+                TURIN DEVELOPER
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html#servicios" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Servicios</a>
+                <a href="index.html#beneficios" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Beneficios</a>
+                <a href="index.html#portafolio" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Portafolio</a>
+                <a href="index.html#contacto" class="text-slate-300 hover:text-cyan-400 transition-colors text-sm uppercase tracking-wider font-medium">Contacto</a>
+                <a href="index.html#contacto" class="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+                    Cotizar Ahora
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="12" x2="20" y2="12"/>
+                        <line x1="4" y1="6" x2="20" y2="6"/>
+                        <line x1="4" y1="18" x2="20" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu" class="md:hidden bg-slate-900 absolute w-full border-b border-slate-800 hidden">
+            <div class="px-6 py-4 space-y-4 flex flex-col">
+                <a href="index.html#servicios" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Servicios</a>
+                <a href="index.html#beneficios" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Beneficios</a>
+                <a href="index.html#portafolio" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Portafolio</a>
+                <a href="index.html#contacto" class="text-left text-slate-300 hover:text-cyan-400 py-2 border-b border-slate-800">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-block px-4 py-1.5 mb-6 border border-cyan-500/30 rounded-full bg-cyan-500/10 backdrop-blur-sm">
+                    <span class="text-cyan-400 font-medium text-sm tracking-wide">PROTECCIÓN DE DATOS</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-8 leading-tight">
+                    Aviso de 
+                    <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                        Privacidad
+                    </span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    Información sobre el tratamiento y protección de sus datos personales.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-20 bg-slate-900/50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-slate-800/50 rounded-2xl p-8 md:p-12 border border-slate-700">
+                    
+                    <div class="mb-8">
+                        <p class="text-slate-400 mb-4">
+                            <strong>Última actualización:</strong> Enero 2026
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Turin Developer está comprometido con la protección de sus datos personales. 
+                            Este aviso describe cómo recopilamos, usamos y protegemos su información.
+                        </p>
+                    </div>
+
+                    <!-- Sección 1 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">1. Responsable del Tratamiento</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p><strong>Denominación:</strong> Turin Developer</p>
+                            <p><strong>Actividad:</strong> Servicios de desarrollo web profesional</p>
+                            <p><strong>Contacto:</strong> maalcantarasmv3@gmail.com</p>
+                            <p><strong>WhatsApp:</strong> +52 55 3799 0742</p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 2 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">2. Datos Personales que Recopilamos</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Recopilamos los siguientes tipos de datos personales:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Datos de Identificación:</strong> Nombre completo</li>
+                                <li><strong>Datos de Contacto:</strong> Correo electrónico, teléfono</li>
+                                <li><strong>Datos Profesionales:</strong> Nombre de empresa o negocio</li>
+                                <li><strong>Datos del Proyecto:</strong> Requerimientos y especificaciones</li>
+                                <li><strong>Datos de Navegación:</strong> Dirección IP, tipo de navegador</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 3 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">3. Finalidades del Tratamiento</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Sus datos personales serán utilizados para:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li>Proporcionar cotizaciones y presupuestos</li>
+                                <li>Desarrollar y entregar proyectos web</li>
+                                <li>Brindar soporte técnico y mantenimiento</li>
+                                <li>Comunicarnos sobre el progreso de proyectos</li>
+                                <li>Enviar información sobre nuevos servicios (con su consentimiento)</li>
+                                <li>Cumplir con obligaciones legales y fiscales</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 4 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">4. Fundamento Legal</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>El tratamiento de sus datos se basa en:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Consentimiento:</strong> Al enviar el formulario de contacto</li>
+                                <li><strong>Ejecución de Contrato:</strong> Para desarrollar proyectos acordados</li>
+                                <li><strong>Interés Legítimo:</strong> Para mejorar nuestros servicios</li>
+                                <li><strong>Obligación Legal:</strong> Para cumplir con requerimientos fiscales</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 5 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">5. Compartir Información</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>No vendemos, alquilamos o compartimos sus datos personales con terceros, excepto:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li>Cuando sea requerido por autoridades legales</li>
+                                <li>Con proveedores de servicios técnicos (hosting, email) bajo acuerdos de confidencialidad</li>
+                                <li>Con su consentimiento expreso</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 6 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">6. Medidas de Seguridad</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Implementamos medidas de seguridad técnicas y organizativas:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li>Cifrado de datos en tránsito (HTTPS)</li>
+                                <li>Acceso restringido a información personal</li>
+                                <li>Copias de seguridad regulares</li>
+                                <li>Actualización constante de sistemas de seguridad</li>
+                                <li>Capacitación en protección de datos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 7 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">7. Tiempo de Conservación</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Conservamos sus datos personales durante:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Datos de Contacto:</strong> Hasta que solicite su eliminación</li>
+                                <li><strong>Datos de Proyectos:</strong> 5 años después de la finalización</li>
+                                <li><strong>Datos Fiscales:</strong> Según lo requerido por la ley mexicana</li>
+                                <li><strong>Datos de Navegación:</strong> Máximo 12 meses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 8 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">8. Sus Derechos (Derechos ARCO)</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Usted tiene derecho a:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Acceso:</strong> Conocer qué datos tenemos sobre usted</li>
+                                <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos</li>
+                                <li><strong>Cancelación:</strong> Solicitar la eliminación de sus datos</li>
+                                <li><strong>Oposición:</strong> Oponerse al tratamiento de sus datos</li>
+                                <li><strong>Portabilidad:</strong> Recibir sus datos en formato estructurado</li>
+                                <li><strong>Revocación:</strong> Retirar su consentimiento en cualquier momento</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sección 9 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">9. Ejercicio de Derechos</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Para ejercer sus derechos, puede contactarnos:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Email:</strong> maalcantarasmv3@gmail.com</li>
+                                <li><strong>WhatsApp:</strong> +52 55 3799 0742</li>
+                                <li><strong>Tiempo de respuesta:</strong> Máximo 20 días hábiles</li>
+                            </ul>
+                            <p class="mt-4">
+                                <strong>Información requerida:</strong> Nombre completo, correo electrónico, 
+                                descripción clara de la solicitud y documentos que acrediten su identidad.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 10 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">10. Cookies y Tecnologías Similares</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>Nuestro sitio web utiliza:</p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li><strong>Cookies técnicas:</strong> Para el funcionamiento básico del sitio</li>
+                                <li><strong>Cookies analíticas:</strong> Para mejorar la experiencia del usuario</li>
+                                <li><strong>Local Storage:</strong> Para recordar preferencias del usuario</li>
+                            </ul>
+                            <p class="mt-4">
+                                Puede configurar su navegador para rechazar cookies, aunque esto puede afectar 
+                                la funcionalidad del sitio web.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 11 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">11. Transferencias Internacionales</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>
+                                Algunos de nuestros proveedores de servicios pueden estar ubicados fuera de México. 
+                                En estos casos, nos aseguramos de que cumplan con estándares adecuados de protección de datos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 12 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">12. Menores de Edad</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>
+                                No recopilamos intencionalmente datos personales de menores de 18 años. 
+                                De ser contrario, los eliminaremos inmediatamente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Sección 13 -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-cyan-400 mb-4">13. Cambios al Aviso de Privacidad</h2>
+                        <div class="text-slate-300 space-y-3">
+                            <p>
+                                Nos reservamos el derecho de modificar este aviso de privacidad. 
+                                Los cambios serán notificados a través de nuestro sitio web y, 
+                                cuando sea apropiado, por correo electrónico.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- <div class="mt-12 p-6 bg-slate-700/50 rounded-lg border border-slate-600">
+                        <p class="text-slate-400 text-sm">
+                            <strong>Autoridad de Control:</strong> Si considera que sus derechos han sido vulnerados, 
+                            puede presentar una queja ante el Instituto Nacional de Transparencia, Acceso a la Información 
+                            y Protección de Datos Personales (INAI) en México.
+                        </p>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-slate-950 border-t border-slate-900 text-center">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-500 text-sm mb-4 md:mb-0">
+                    © 2026 Turin Developer | Todos los derechos reservados.
+                </p>
+                <div class="flex gap-6 text-sm">
+                    <a href="acerca-de.html" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        Acerca de
+                    </a>
+                    <a href="terminos-y-condiciones.html" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        Términos y Condiciones
+                    </a>
+                    <a href="aviso-de-privacidad.html" class="text-slate-500 hover:text-cyan-400 transition-colors">
+                        Aviso de Privacidad
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
