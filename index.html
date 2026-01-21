@@ -159,42 +159,42 @@
                 id: 2,
                 title: "La Parrilla Urbana",
                 image: "images/restaurante.png",
-                tag: "Restaurante (Modelo)",
+                tag: "Restaurante",
                 url: "https://turin10ro.github.io/premium-m4/"
                 },
                 {
                 id: 3,
                 title: "Dental Care Plus",
                 image: "images/clinica-dental.png",
-                tag: "Clínica Dental (Modelo)",
+                tag: "Clínica Dental",
                 url: "https://turin10ro.github.io/clinica-dental/"
                 },
                 {
                 id: 4,
                 title: "Fade Masters Barber",
                 image: "images/barberia.png",
-                tag: "Barbería (Modelo)",
+                tag: "Barbería",
                 url: "https://turin10ro.github.io/barber-modelo/"
                 },
                 {
                 id: 5,
                 title: "Dulce Amanecer",
                 image: "images/pastelPana.png",
-                tag: "Panadería (Modelo)",
+                tag: "Panadería",
                 url: "https://turin10ro.github.io/pasteleria-panaderia/"
                 }, 
                 {
                 id: 6,
                 title: "Web Corporativa",
                 image: "images/corporativa.png",
-                tag: "Corporation (Modelo)",
+                tag: "Corporation",
                 url: "https://turin10ro.github.io/corporativa/"
                 },
                 {
                 id: 7,
                 title: "Mecánico",
                 image: "images/mecanico.png",
-                tag: "Taller (Modelo)",
+                tag: "Taller",
                 url: "https://turin10ro.github.io/mecanico/"
                 }
             ];
@@ -521,9 +521,24 @@
                 </section>
 
                 <footer className="py-8 bg-slate-950 border-t border-slate-900 text-center">
-                    <p className="text-slate-500 text-sm">
-                    © {new Date().getFullYear()} Turin Developer | Todos los derechos reservados.
-                    </p>
+                    <div className="container mx-auto px-6">
+                        <div className="flex flex-col md:flex-row justify-between items-center">
+                            <p className="text-slate-500 text-sm mb-4 md:mb-0">
+                                © {new Date().getFullYear()} Turin Developer | Todos los derechos reservados.
+                            </p>
+                            <div className="flex gap-6 text-sm">
+                                <a href="acerca-de.html" className="text-slate-500 hover:text-cyan-400 transition-colors">
+                                    Acerca de
+                                </a>
+                                <a href="terminos-y-condiciones.html" className="text-slate-500 hover:text-cyan-400 transition-colors">
+                                    Términos y Condiciones
+                                </a>
+                                <a href="aviso-de-privacidad.html" className="text-slate-500 hover:text-cyan-400 transition-colors">
+                                    Aviso de Privacidad
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </footer>
 
                 </div>
@@ -535,9 +550,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
