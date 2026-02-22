@@ -17,6 +17,33 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
+
+        /* ===== Scrollbar Personalizado ===== */
+        
+        /* Ancho del scrollbar */
+        ::-webkit-scrollbar {
+          width: 12px;
+        }
+        
+        /* Fondo (track) */
+        ::-webkit-scrollbar-track {
+          background: #111;
+          border-radius: 10px;
+        }
+        
+        /* Barra que se mueve (thumb) */
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #00c6ff, #0072ff);
+          border-radius: 10px;
+          border: 2px solid #111;
+          transition: all 0.3s ease;
+        }
+        
+        /* Efecto al pasar el mouse */
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg, #ff512f, #dd2476);
+          box-shadow: 0 0 10px rgba(255, 81, 47, 0.7);
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-white">
@@ -336,3 +363,4 @@
     </script>
 </body>
 </html>
+
