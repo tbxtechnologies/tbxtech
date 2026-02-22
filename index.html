@@ -84,7 +84,7 @@
             }, []);
 
             useEffect(() => {
-                emailjs.init("aVdk4VU9V7jCtmqEiOPTW");
+                emailjs.init("PjPhgNbky2_QyqtQ5");
                 const form = document.getElementById('form');
                 const btn = document.getElementById('button');
                 if (form && btn) {
@@ -106,7 +106,27 @@
                                 console.log('Email send error:', err);
                                 btn.textContent = 'Enviar Mensaje';
                                 btn.disabled = false;
-                                alert(JSON.stringify(err));
+                                // Fallback a mailto si EmailJS falla
+                                const formData = new FormData(form);
+                                const nombre = formData.get('from_name');
+                                const empresa = formData.get('empresa');
+                                const email = formData.get('email');
+                                const mensaje = formData.get('message');
+                                
+                                const subject = `Nuevo proyecto de ${nombre}${empresa ? ` - ${empresa}` : ''}`;
+                                const body = `Hola!
+
+Nombre: ${nombre}
+${empresa ? `Empresa/Negocio: ${empresa}` : ''}
+Email: ${email}
+
+Mensaje:
+${mensaje}
+
+---
+Enviado desde turin10ro.github.io`;
+                                
+                                window.location.href = `mailto:maalcantarasmv3@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                             });
                     });
                 }
