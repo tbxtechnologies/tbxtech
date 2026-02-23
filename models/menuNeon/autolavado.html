@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Autolavado AquaDetail - El mejor cuidado para tu vehículo. Lavado, encerado y detallado profesional.">
+    <title>AquaDetail | Autolavado Profesional</title>
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --primary: #00d2ff;
+            --primary-dark: #0078ff;
+            --secondary: #1a1a2e;
+            --accent: #ff0055;
+            --text-light: #f5f5f5;
+            --text-dark: #333333;
+            --gray: #f0f2f5;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--gray);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- UTILIDADES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 120, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 120, 255, 0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .hamburger {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(26, 26, 46, 0.8)), 
+                        url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        .hero-btn-group {
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        /* --- SERVICIOS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 210, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        /* --- PAQUETES Y PRECIOS --- */
+        .pricing-section {
+            background-color: white;
+        }
+
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .price-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 40px;
+            width: 320px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 120, 255, 0.2);
+            z-index: 2;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .price-header h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 20px 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #777;
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features-list li {
+            margin-bottom: 12px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        /* --- PROMOCIONES --- */
+        .promo-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #2a2a4a 100%);
+            color: white;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px;
+            flex-wrap: wrap;
+        }
+
+        .promo-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .promo-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .promo-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .promo-img {
+            flex: 1;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .promo-img i {
+            font-size: 8rem;
+            color: rgba(255,255,255,0.1);
+        }
+
+        /* --- GALERIA --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 120, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* --- INFO Y FOOTER --- */
+        .info-section {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .info-box h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .schedule-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            border: none;
+        }
+
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover { color: var(--primary); }
+
+        /* --- WHATSAPP BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Clase para animación al hacer scroll */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links {
+                position: fixed;
+                background: var(--secondary);
+                height: 100vh;
+                width: 100%;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.3s;
+                z-index: 999;
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; z-index: 1000; }
+            .price-card.popular { transform: scale(1); }
+            .promo-content { text-align: center; padding: 40px 20px; }
+            .promo-text, .promo-img { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Nav -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-droplet"></i> AquaDetail
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#inicio" onclick="toggleMenu()">Inicio</a></li>
+                    <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+                    <li><a href="#precios" onclick="toggleMenu()">Precios</a></li>
+                    <li><a href="#galeria" onclick="toggleMenu()">Galería</a></li>
+                    <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+                </ul>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <h1>Tu Auto Merece Brillar</h1>
+            <p>Servicio premium de autolavado y estética vehicular. <br>Cuidamos cada detalle como si fuera nuestro.</p>
+            <div class="hero-btn-group">
+                <a href="#precios" class="btn btn-primary">Ver Paquetes</a>
+                <a href="#contacto" class="btn btn-outline" style="color: white; border-color: white;">Ubicación</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="section-padding">
+        <div class="container">
+            <div class="text-center reveal">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p>Soluciones integrales para la limpieza de tu vehículo</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-soap"></i>
+                    </div>
+                    <h3>Lavado Ecológico</h3>
+                    <p>Limpieza profunda exterior utilizando productos biodegradables que protegen la pintura y el medio ambiente.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-spray-can-sparkles"></i>
+                    </div>
+                    <h3>Encerado Premium</h3>
+                    <p>Aplicación de ceras sintéticas y de carnauba para un brillo espejo y protección contra rayos UV.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <h3>Detallado Interior</h3>
+                    <p>Limpieza de tapicería, hidratación de piel, aspirado profundo y eliminación de olores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promociones -->
+    <div class="container reveal">
+        <section class="promo-section">
+            <div class="promo-content">
+                <div class="promo-text">
+                    <span class="promo-badge">OFERTA DE LA SEMANA</span>
+                    <h2>¡Martes de 2x1 en Encerado!</h2>
+                    <p>Ven con un amigo y ambos obtienen encerado express gratis al contratar el Paquete Premium. Muestra este código QR al llegar.</p>
+                    <a href="https://wa.me/1234567890" class="btn btn-primary" style="margin-top: 20px; background: white; color: var(--secondary);">Reservar Ahora</a>
+                </div>
+                <div class="promo-img">
+                    <i class="fa-solid fa-qrcode" style="font-size: 120px; color: white;"></i>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Escanear en caja</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Precios -->
+    <section id="precios" class="section-padding">
+        <div class="container">
+            <div class="text-center reveal">
+                <h2 class="section-title">Paquetes y Precios</h2>
+                <p>Elige el nivel de cuidado que tu auto necesita</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Básico -->
+                <div class="price-card reveal">
+                    <div class="price-header">
+                        <h3>Básico</h3>
+                        <div class="price">$150<span>/auto</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> Lavado Exterior</li>
+                        <li><i class="fa-solid fa-check"></i> Aspirado General</li>
+                        <li><i class="fa-solid fa-check"></i> Limpieza de Rines</li>
+                        <li><i class="fa-solid fa-check"></i> Abrillantador de Llantas</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Elegir</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="price-card popular reveal">
+                    <div class="popular-badge">POPULAR</div>
+                    <div class="price-header">
+                        <h3>Premium</h3>
+                        <div class="price">$350<span>/auto</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> Todo lo del Básico</li>
+                        <li><i class="fa-solid fa-check"></i> Cera Líquida</li>
+                        <li><i class="fa-solid fa-check"></i> Aromatizante</li>
+                        <li><i class="fa-solid fa-check"></i> Limpieza de Tablero</li>
+                        <li><i class="fa-solid fa-check"></i> Descontaminado de Pintura</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Elegir</a>
+                </div>
+
+                <!-- Detallado -->
+                <div class="price-card reveal">
+                    <div class="price-header">
+                        <h3>Full Detail</h3>
+                        <div class="price">$800<span>/auto</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> Todo lo del Premium</li>
+                        <li><i class="fa-solid fa-check"></i> Lavado de Tapicería</li>
+                        <li><i class="fa-solid fa-check"></i> Pulido de Faros</li>
+                        <li><i class="fa-solid fa-check"></i> Lavado de Motor</li>
+                        <li><i class="fa-solid fa-check"></i> Cera de Carnauba</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Elegir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="section-padding" style="background-color: white;">
+        <div class="container">
+            <div class="text-center reveal">
+                <h2 class="section-title">Nuestros Trabajos</h2>
+                <p>Resultados reales, brillo garantizado</p>
+            </div>
+            <div class="gallery-grid reveal">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605164666955-fc543fbf43af?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Auto lavado">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Limpieza interior">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Encerado">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Detallado de rines">
+                    <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información y Contacto -->
+    <section id="contacto" class="info-section">
+        <div class="container">
+            <div class="info-grid reveal">
+                <div class="info-box">
+                    <h3><i class="fa-regular fa-clock"></i> Horarios</h3>
+                    <ul class="schedule-list" style="list-style: none;">
+                        <li><span>Lunes - Viernes:</span> <strong>9:00 AM - 7:00 PM</strong></li>
+                        <li><span>Sábado:</span> <strong>9:00 AM - 5:00 PM</strong></li>
+                        <li><span>Domingo:</span> <strong>Cerrado</strong></li>
+                    </ul>
+                    <h3 style="margin-top: 30px;"><i class="fa-solid fa-phone"></i> Contacto</h3>
+                    <p>+52 55 1234 5678</p>
+                    <p>contacto@aquadetail.com</p>
+                </div>
+                <div class="map-container">
+                    <!-- Placeholder de Google Maps -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.538562386762!2d-99.1687!3d19.427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzM3LjIiTiA5OcKwMTAnMDcuMyJX!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="fa-solid fa-droplet"></i> AquaDetail
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <p>&copy; <span id="year"></span> AquaDetail Autolavado. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/525512345678?text=Hola,%20quisiera%20agendar%20una%20cita" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Año automático en footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Menú Hamburguesa
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Efecto Scroll Reveal (Animación al bajar)
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Disparar reveal al cargar por si hay elementos visibles
+        reveal();
+    </script>
+</body>
+</html>

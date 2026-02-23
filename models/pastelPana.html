@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Harina | Panadería Artesanal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --primary: #D4A373; /* Dorado Pan */
+            --primary-dark: #b08155;
+            --secondary: #FAEDCD; /* Crema suave */
+            --accent: #FEFAE0; /* Blanco hueso */
+            --text-dark: #3E3636; /* Chocolate oscuro */
+            --text-light: #6B705C; /* Verde oliva apagado */
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--accent);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
+            color: var(--text-dark);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILIDADES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        
+        .logo i { color: var(--primary); margin-right: 5px; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- DESTACADOS --- */
+        .features {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* --- CATÁLOGO --- */
+        .menu-section {
+            padding: 5rem 0;
+            background-color: var(--accent);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--text-dark);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .seasonal-tag {
+            background-color: #E76F51;
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .price {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .product-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0; /* Ajustado al quitar botón */
+        }
+
+        /* --- PEDIDOS PERSONALIZADOS --- */
+        .custom-orders {
+            padding: 5rem 0;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .custom-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .custom-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .custom-image img {
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .custom-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        /* --- CONTACTO & FOOTER --- */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 { color: var(--white); }
+        .contact span { color: var(--primary); }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: #2b2626;
+            color: #aaa;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- FLOATING WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ESTILOS PROMOCIÓN DESARROLLADOR --- */
+        .promo-section {
+            padding: 3rem 0;
+            background-color: var(--white);
+            border-top: 1px solid #f3f4f6;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .promo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .promo-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .promo-icon-box {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .promo-text p:first-child {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            line-height: 1.2;
+        }
+
+        .promo-text p:last-child {
+            color: #9ca3af;
+            font-size: 0.75rem;
+            margin-bottom: 0;
+        }
+
+        .promo-btn {
+            padding: 12px 32px;
+            border: 1px solid var(--text-dark);
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .promo-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--white);
+        }
+
+        @media (min-width: 768px) {
+            .promo-container {
+                flex-direction: row;
+            }
+            .promo-container {
+                gap: 0;
+            }
+        }
+
+        /* --- MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                transform: translateY(-150%);
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .custom-wrapper {
+                flex-direction: column-reverse;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-bread-slice"></i> Dulce Harina</a>
+                <div class="nav-links" id="navLinks">
+                    <a href="#inicio" onclick="closeMenu()">Inicio</a>
+                    <a href="#menu" onclick="closeMenu()">Menú</a>
+                    <a href="#temporada" onclick="closeMenu()">Temporada</a>
+                    <a href="#pedidos" onclick="closeMenu()">Pedidos</a>
+                    <a href="#contacto" onclick="closeMenu()">Contacto</a>
+                </div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>El Sabor de lo Auténtico</h1>
+            <p>Panadería artesanal con masa madre, ingredientes naturales y el amor de siempre.</p>
+            <a href="#menu" class="btn">Ver Productos</a>
+        </div>
+    </section>
+
+    <!-- Highlights / Features -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-wheat-alt feature-icon"></i>
+                    <h3>Ingredientes Naturales</h3>
+                    <p>Harinas orgánicas y frutas frescas de temporada.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-fire feature-icon"></i>
+                    <h3>Horno de Piedra</h3>
+                    <p>Cocción lenta para una corteza crujiente y miga perfecta.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-truck feature-icon"></i>
+                    <h3>Delivery Rápido</h3>
+                    <p>Recibe tu pedido fresco en la puerta de tu casa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <span>Nuestro Menú</span>
+                <h2>Delicias Recién Horneadas</h2>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="pan">Panadería</button>
+                <button class="filter-btn" data-filter="pastel">Pasteles</button>
+                <button class="filter-btn" data-filter="postre">Postres</button>
+                <button class="filter-btn" data-filter="bebida">Cafetería</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                
+                <!-- Item 1 -->
+                <div class="product-card" data-category="pan">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pan de Masa Madre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Pan de Masa Madre</h3>
+                            <span class="price">$5.50</span>
+                        </div>
+                        <p class="product-desc">Fermentación de 48 horas, corteza rústica.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="product-card" data-category="pastel">
+                    <span class="product-tag">Favorito</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cheesecake de Frutos Rojos">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Cheesecake Berry</h3>
+                            <span class="price">$25.00</span>
+                        </div>
+                        <p class="product-desc">Base de galleta y coulis de frutos del bosque.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="product-card" data-category="pan">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Croissants">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Croissant de Mantequilla</h3>
+                            <span class="price">$3.00</span>
+                        </div>
+                        <p class="product-desc">Clásico francés, hojaldrado y dorado.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Temporada) -->
+                <div class="product-card" data-category="pastel">
+                    <span class="product-tag seasonal-tag" id="temporada">Temporada</span>
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tarta de Calabaza">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Tarta de Otoño</h3>
+                            <span class="price">$18.00</span>
+                        </div>
+                        <p class="product-desc">Calabaza, especias chai y crema batida.</p>
+                    </div>
+                </div>
+
+                 <!-- Item 5 -->
+                 <div class="product-card" data-category="postre">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tartaleta">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Tartaleta de Limón</h3>
+                            <span class="price">$4.50</span>
+                        </div>
+                        <p class="product-desc">Merengue italiano tostado y crema de limón.</p>
+                    </div>
+                </div>
+
+                 <!-- Item 6 -->
+                 <div class="product-card" data-category="bebida">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Café">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">
+                            <h3>Cappuccino</h3>
+                            <span class="price">$3.50</span>
+                        </div>
+                        <p class="product-desc">Café de especialidad con leche texturizada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pedidos Personalizados -->
+    <section class="custom-orders" id="pedidos">
+        <div class="container">
+            <div class="custom-wrapper">
+                <div class="custom-text">
+                    <div class="section-title" style="text-align: left;">
+                        <span>Celebraciones</span>
+                        <h2>Pedidos Personalizados</h2>
+                    </div>
+                    <p style="margin-bottom: 2rem;">¿Tienes una boda, cumpleaños o evento especial? Creamos pasteles únicos a tu medida. Elige el sabor, el diseño y nosotros ponemos la magia.</p>
+                    <ul style="margin-bottom: 2rem; list-style: circle; padding-left: 20px;">
+                        <li>Bodas y XV Años</li>
+                        <li>Pasteles Temáticos Infantiles</li>
+                        <li>Mesas de Postres</li>
+                        <li>Opciones Sin Gluten / Veganas</li>
+                    </ul>
+                    <a href="#contacto" class="btn">Cotizar Ahora</a>
+                </div>
+                <div class="custom-image">
+                    <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pastel de Boda">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-title">
+                <span>Visítanos</span>
+                <h2>¿Listo para probar?</h2>
+            </div>
+            <p>Calle Principal #123, Colonia Centro.<br>Abierto de Lunes a Domingo: 7:00 AM - 8:00 PM</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <br>
+            <a href="tel:+123456789" class="btn" style="border-color: white; color: white; margin-top: 20px;">Llamar al Local</a>
+        </div>
+    </section>
+
+    <!-- ESPACIO PROMOCIONAL DESARROLLADOR -->
+    <section class="promo-section">
+        <div class="container">
+            <div class="promo-container">
+                <div class="promo-info">
+                    <div class="promo-icon-box">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="promo-text">
+                        <p>¿Deseas una presencia digital de este nivel?</p>
+                        <p>Ponte en contacto con el desarrollador.</p>
+                    </div>
+                </div>
+                <a href="https://turin10ro.github.io/turin-developer/" target="_blank" class="promo-btn">
+                    Visitar Portafolio de Turin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Dulce Harina. Todos los derechos reservados. | Diseño para QR</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-float" title="Pedir por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // --- 1. Mobile Navigation Toggle ---
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        const icon = mobileToggle.querySelector('i');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')){
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        // --- 2. Filtro de Categorías ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const products = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                products.forEach(product => {
+                    if (filterValue === 'all' || product.getAttribute('data-category') === filterValue) {
+                        product.style.display = 'block';
+                        product.style.animation = 'fadeIn 0.5s ease forwards';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- 3. Scroll Reveal Simple ---
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.feature-card, .custom-text, .custom-image');
+        animatedElements.forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "all 0.6s ease-out";
+            observer.observe(el);
+        });
+
+    </script>
+</body>
+</html>

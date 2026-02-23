@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende Inglés con Elena | Clases Particulares y Grupales</title>
+    <meta name="description" content="Clases de inglés personalizadas para niños, jóvenes y adultos. Preparación para exámenes, conversación y gramática. ¡Reserva tu clase hoy!">
+    <meta name="keywords" content="clases de ingles, profesora de ingles, ingles online, ingles conversacional, preparación toefl">
+    
+    <!-- Tailwind CSS (Framework ligero y moderno para estilos) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuración personalizada de Tailwind y Estilos Extra -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',   /* Azul Profundo */
+                        secondary: '#3B82F6', /* Azul Claro */
+                        accent: '#F59E0B',    /* Naranja Acción */
+                        light: '#F3F4F6',
+                        dark: '#111827',
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        heading: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para animaciones sutiles */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Efecto Hover en tarjetas */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-white antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-white shadow-md transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo / Nombre -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-heading font-bold text-2xl text-primary">
+                        <i class="fa-solid fa-graduation-cap text-accent mr-2"></i>English<span class="text-secondary">WithElena</span>
+                    </a>
+                </div>
+                
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-600 hover:text-primary font-medium transition">Inicio</a>
+                    <a href="#sobre-mi" class="text-gray-600 hover:text-primary font-medium transition">Sobre Mí</a>
+                    <a href="#servicios" class="text-gray-600 hover:text-primary font-medium transition">Servicios</a>
+                    <a href="#testimonios" class="text-gray-600 hover:text-primary font-medium transition">Testimonios</a>
+                    <a href="#contacto" class="bg-primary text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-800 transition shadow-lg transform hover:scale-105">
+                        Reserva tu clase
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil (Oculto por defecto) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="#inicio" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md w-full text-center">Inicio</a>
+                <a href="#sobre-mi" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md w-full text-center">Sobre Mí</a>
+                <a href="#servicios" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md w-full text-center">Servicios</a>
+                <a href="#contacto" class="mobile-link block mt-4 px-5 py-3 text-base font-medium text-white bg-accent rounded-full w-3/4 text-center">¡Empezar ahora!</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative bg-light h-screen min-h-[600px] flex items-center pt-20">
+        <!-- Imagen de fondo con overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Estudiantes aprendiendo inglés" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-white space-y-6 fade-in-up">
+                <span class="bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold tracking-wide uppercase">Clases Online y Presenciales</span>
+                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    Rompe la barrera del idioma y <span class="text-accent">habla con confianza</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-lg">
+                    Método práctico adaptado a tus objetivos. Desde inglés para niños hasta preparación profesional. Tu primera asesoría es gratuita.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contacto" class="bg-accent text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-500 transition transform hover:scale-105 text-center">
+                        Reservar Clase Prueba
+                    </a>
+                    <a href="#servicios" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-primary transition text-center">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+            <!-- Espacio vacío para balancear en desktop, la imagen de fondo hace el trabajo visual -->
+            <div class="hidden md:block"></div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative order-2 md:order-1">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-accent/20 rounded-full z-0"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-secondary/20 rounded-full z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profesora de Inglés" class="relative z-10 rounded-2xl shadow-xl w-full object-cover h-[500px]">
+                </div>
+                <div class="order-1 md:order-2 space-y-6">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary">Hola, soy Elena</h2>
+                    <p class="text-lg font-semibold text-secondary">Teacher certificada (TEFL) con más de 8 años de experiencia.</p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Mi pasión es ayudar a mis estudiantes a encontrar su propia voz en inglés. No creo en la memorización aburrida, sino en el aprendizaje a través de la práctica real y contextos significativos.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        He trabajado con estudiantes de todas las edades, desde niños dando sus primeros pasos hasta ejecutivos preparando presentaciones internacionales.
+                    </p>
+                    
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-accent mr-3"></i> Certificación C2 Proficiency
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-accent mr-3"></i> Especialista en TOEFL/IELTS
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-accent mr-3"></i> Pedagogía Dinámica
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fa-solid fa-check-circle text-accent mr-3"></i> Paciencia y Dedicación
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-20 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-4">Mis Clases</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-12">Programas diseñados para cumplir tus objetivos específicos, ya sea mejorar tus notas, viajar o conseguir ese ascenso.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-left">
+                    <div class="w-14 h-14 bg-blue-100 text-primary rounded-lg flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-child-reaching"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-3">Inglés para Niños y Jóvenes</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Aprendizaje lúdico y apoyo escolar. Refuerza lo aprendido en el colegio y pierde el miedo a hablar desde pequeño.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                        <li>• Juegos interactivos</li>
+                        <li>• Apoyo con tareas</li>
+                        <li>• Horarios de tarde</li>
+                    </ul>
+                    <a href="#contacto" class="text-secondary font-semibold hover:text-primary transition">Más información &rarr;</a>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm border border-primary/20 text-left relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                    <div class="w-14 h-14 bg-orange-100 text-accent rounded-lg flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-3">Conversación & Adultos</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Clases dinámicas enfocadas en 'Speaking' y 'Listening'. Ideal para viajes, negocios o cultura general.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                        <li>• Temas de actualidad</li>
+                        <li>• Corrección de pronunciación</li>
+                        <li>• Vocabulario práctico</li>
+                    </ul>
+                    <a href="#contacto" class="text-secondary font-semibold hover:text-primary transition">Más información &rarr;</a>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-left">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-file-contract"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-3">Preparación de Exámenes</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Entrenamiento intensivo para TOEFL, IELTS, Cambridge (FCE, CAE). Estrategias para maximizar tu puntaje.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                        <li>• Simulacros de examen</li>
+                        <li>• Tips de gestión de tiempo</li>
+                        <li>• Revisión de ensayos</li>
+                    </ul>
+                    <a href="#contacto" class="text-secondary font-semibold hover:text-primary transition">Más información &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios / Metodología -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold">¿Por qué elegir mis clases?</h2>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-laptop text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">100% Flexibilidad</h4>
+                            <p class="text-blue-100">Clases online vía Zoom/Meet o presenciales (según zona). Tú eliges el horario que mejor se adapte a tu vida.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-bullseye text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Metodología Personalizada</h4>
+                            <p class="text-blue-100">No uso el mismo libro para todos. Creo un plan de estudios basado en tus debilidades y fortalezas.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-accent">
+                            <i class="fa-solid fa-certificate text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Resultados Medibles</h4>
+                            <p class="text-blue-100">Evaluaciones periódicas para que veas tu progreso real mes a mes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-2xl text-gray-800 transform rotate-2 hover:rotate-0 transition duration-500">
+                    <h3 class="font-heading text-2xl font-bold text-primary mb-6 text-center">¡Promo Especial!</h3>
+                    <div class="text-center space-y-4">
+                        <p class="text-gray-600">Al contratar tu primer paquete mensual:</p>
+                        <div class="text-5xl font-bold text-accent">20% OFF</div>
+                        <p class="text-sm text-gray-500">Oferta válida para nuevos estudiantes este mes.</p>
+                        <a href="#contacto" class="block w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition">
+                            Reclamar Oferta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-12">Lo que dicen mis estudiantes</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="bg-light p-8 rounded-2xl relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-primary/10 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10">"Elena tiene una paciencia infinita. Gracias a ella logré pasar mi examen TOEFL con el puntaje que necesitaba para la maestría."</p>
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">CM</div>
+                        <div class="text-left">
+                            <h5 class="font-bold text-gray-900">Carlos M.</h5>
+                            <p class="text-xs text-gray-500">Estudiante TOEFL</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonio 2 -->
+                <div class="bg-light p-8 rounded-2xl relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-primary/10 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10">"Mis hijos adoran sus clases. Antes odiaban el inglés del colegio, ahora esperan los martes para conectarse con su teacher."</p>
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">LR</div>
+                        <div class="text-left">
+                            <h5 class="font-bold text-gray-900">Laura R.</h5>
+                            <p class="text-xs text-gray-500">Mamá de 2 alumnos</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonio 3 -->
+                <div class="bg-light p-8 rounded-2xl relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-primary/10 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10">"Necesitaba inglés para mi trabajo y las clases de Business English fueron puntuales y efectivas. 100% recomendada."</p>
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center font-bold text-gray-600">JP</div>
+                        <div class="text-left">
+                            <h5 class="font-bold text-gray-900">Javier P.</h5>
+                            <p class="text-xs text-gray-500">Profesional IT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto / CTA Final -->
+    <section id="contacto" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-10 bg-primary text-white flex flex-col justify-center">
+                        <h3 class="font-heading text-3xl font-bold mb-4">¿Listo para empezar?</h3>
+                        <p class="mb-8 text-blue-100">Déjame tus datos y te contactaré para agendar una evaluación gratuita de 15 minutos.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-envelope w-8 text-accent"></i>
+                                <span>contacto@clasesconelena.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-brands fa-whatsapp w-8 text-accent"></i>
+                                <span>+52 55 1234 5678</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-location-dot w-8 text-accent"></i>
+                                <span>Online / Ciudad de México</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="p-10">
+                        <form onsubmit="event.preventDefault(); alert('¡Gracias! Mensaje enviado (Simulación).');" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Tu nombre">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="tucorreo@ejemplo.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Interés</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none">
+                                    <option>Inglés General</option>
+                                    <option>Para Niños</option>
+                                    <option>Preparación Exámenes</option>
+                                    <option>Conversación</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje (Opcional)</label>
+                                <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Cuéntame tus objetivos..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-accent text-white font-bold py-3 rounded-lg hover:bg-yellow-500 transition shadow-md">
+                                Enviar Solicitud
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-2">&copy; 2024 English With Elena. Todos los derechos reservados.</p>
+            <p class="text-sm">Diseñado para impulsar tu aprendizaje.</p>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante de WhatsApp -->
+    <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl hover:bg-green-600 hover:scale-110 transition z-50 animate-bounce" aria-label="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript para interactividad -->
+    <script>
+        // Menú Móvil Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Efecto de Navbar al hacer scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.add('bg-white/95');
+                navbar.classList.add('backdrop-blur-sm');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.remove('bg-white/95');
+                navbar.classList.remove('backdrop-blur-sm');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Solutions | Innovación Corporativa</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons & Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* --- VARIABLES & TEMAS --- */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --bg: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --surface: #f9fafb;
+            --border: #e5e7eb;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Clases para el banner de desarrollador */
+            --luxury-gold: #2563eb;
+            --luxury-dark: #1f2937;
+            --luxury-gray: #6b7280;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --text-light: #94a3b8;
+            --surface: #1e293b;
+            --border: #334155;
+            --luxury-gold: #3b82f6;
+            --luxury-dark: #f8fafc;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background-color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--bg), 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000') no-repeat center center/cover;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-inline: auto;
+            opacity: 0.9;
+        }
+
+        /* --- SERVICIOS --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- SOBRE NOSOTROS --- */
+        .about {
+            background: var(--surface);
+        }
+
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0 var(--primary);
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        /* --- TESTIMONIOS --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            border-radius: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* --- CONTACTO --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            background: var(--surface);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        input, textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: 2px solid var(--primary);
+            border-color: transparent;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--surface);
+            padding: 50px 5% 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* --- ANIMACIONES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--bg);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* Ajuste promo desarrollador móvil */
+            .promo-dev-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Estilos específicos para la sección promocional */
+        .promo-dev-section {
+            padding: 48px 0;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .promo-dev-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .promo-dev-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--luxury-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--luxury-gold);
+        }
+        .promo-dev-link {
+            padding: 12px 32px;
+            border: 1px solid var(--luxury-dark);
+            color: var(--luxury-dark);
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+        .promo-dev-link:hover {
+            background: var(--luxury-dark);
+            color: var(--bg);
+        }
+
+        /* Success Message Modal */
+        #success-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            z-index: 2000;
+            border: 1px solid var(--primary);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">NEXUS SOLUTIONS</div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li>
+                    <button class="theme-toggle" id="theme-btn">
+                        <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                </li>
+                <li><a href="#contacto" class="btn btn-primary">Empezar</a></li>
+            </ul>
+            <div class="menu-btn" id="mobile-btn">☰</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content reveal">
+            <h1>Transforma tu Futuro Digital</h1>
+            <p>Ayudamos a pymes y medianas empresas a escalar mediante soluciones tecnológicas innovadoras y diseño de vanguardia.</p>
+            <div class="hero-btns">
+                <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="container">
+        <div class="section-title reveal">
+            <h2>Soluciones a Medida</h2>
+            <p>Expertos en convertir problemas complejos en oportunidades sencillas.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Estrategia Digital</h3>
+                <p>Planificamos el crecimiento de tu marca en el entorno digital con datos reales.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h3>Desarrollo Web</h3>
+                <p>Sitios rápidos, seguros y optimizados para convertir visitantes en clientes.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+                </div>
+                <h3>Análisis de Datos</h3>
+                <p>Entiende el comportamiento de tus usuarios y toma decisiones inteligentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about">
+        <div class="container about-flex">
+            <div class="about-image reveal">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000" alt="Nuestro Equipo">
+            </div>
+            <div class="about-text reveal">
+                <span style="color: var(--primary); font-weight: 600;">QUIÉNES SOMOS</span>
+                <h2 style="font-size: 2.5rem; margin: 1rem 0;">Pasión por la excelencia y la innovación.</h2>
+                <p style="margin-bottom: 1.5rem;">Fundada en 2015, Nexus Solutions nació con la misión de democratizar la tecnología de alta gama para empresas de todos los tamaños.</p>
+                <p style="margin-bottom: 2rem;">Nuestro equipo interdisciplinario combina creatividad y rigor técnico para entregar resultados que superan expectativas.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4 style="color: var(--primary)">+200</h4>
+                        <p>Proyectos Éxitosos</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--primary)">98%</h4>
+                        <p>Clientes Felices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container">
+        <div class="section-title reveal">
+            <h2>Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <p>"La mejor inversión que hemos hecho este año. Nuestra presencia digital cambió radicalmente gracias a Nexus."</p>
+                <div class="user-info">
+                    <img src="https://i.pravatar.cc/150?u=1" alt="Cliente">
+                    <div>
+                        <strong>Carlos Ruiz</strong>
+                        <p style="font-size: 0.8rem; color: var(--text-light)">CEO, TechStore</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <p>"Profesionalismo puro. Cumplieron con los tiempos y el diseño es simplemente espectacular."</p>
+                <div class="user-info">
+                    <img src="https://i.pravatar.cc/150?u=2" alt="Cliente">
+                    <div>
+                        <strong>Elena Gómez</strong>
+                        <p style="font-size: 0.8rem; color: var(--text-light)">Directora de Marketing, BioLife</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="container">
+        <div class="contact-container reveal">
+            <div class="contact-info">
+                <h3>Hablemos de tu proyecto</h3>
+                <p style="margin-bottom: 2rem;">Estamos listos para escucharte. Déjanos tus datos y nos pondremos en contacto en menos de 24 horas.</p>
+                
+                <div class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>hola@nexussolutions.com</span>
+                </div>
+                <div class="info-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>+34 912 345 678</span>
+                </div>
+            </div>
+            
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" placeholder="Tu nombre..." required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" rows="5" placeholder="Cuéntanos tu idea..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ESPACIO PROMOCIONAL DESARROLLADOR -->
+    <section class="promo-dev-section">
+        <div class="container">
+            <div class="promo-dev-flex">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div class="promo-dev-icon-wrapper">
+                        <i class="ph ph-desktop" style="font-size: 24px;"></i>
+                    </div>
+                    <div>
+                        <p style="color: var(--luxury-dark); font-weight: 600; font-size: 14px; margin: 0;">¿Deseas una presencia digital de este nivel?</p>
+                        <p style="color: var(--luxury-gray); font-size: 12px; margin: 0;">Ponte en contacto con el desarrollador.</p>
+                    </div>
+                </div>
+                <a href="https://turin10ro.github.io/turin-developer/" 
+                   target="_blank" 
+                   class="promo-dev-link">
+                    Visitar Portafolio de Turin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="logo" style="margin-bottom: 1.5rem;">NEXUS</div>
+                    <p style="color: var(--text-light)">Líderes en transformación digital para empresas que miran hacia el futuro.</p>
+                </div>
+                <div>
+                    <h4>Navegación</h4>
+                    <ul style="margin-top: 1rem; color: var(--text-light); line-height: 2;">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul style="margin-top: 1rem; color: var(--text-light); line-height: 2;">
+                        <li>Privacidad</li>
+                        <li>Cookies</li>
+                        <li>Términos de servicio</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Nexus Solutions. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal">
+        <h3>¡Mensaje Enviado!</h3>
+        <p>Gracias por contactarnos. Te responderemos pronto.</p>
+        <button class="btn btn-primary" style="margin-top: 1rem;" onclick="closeModal()">Cerrar</button>
+    </div>
+
+    <script>
+        // --- TEMA CLARO / OSCURO ---
+        const themeBtn = document.getElementById('theme-btn');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const body = document.body;
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        });
+
+        // --- MENÚ MÓVIL ---
+        const mobileBtn = document.getElementById('mobile-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Cerrar menú al hacer click en un link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileBtn.textContent = '☰';
+            });
+        });
+
+        // --- ANIMACIONES DE APARICIÓN (REVEAL) ---
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+
+        // --- VALIDACIÓN DE FORMULARIO ---
+        const contactForm = document.getElementById('contact-form');
+        const successModal = document.getElementById('success-modal');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulación de envío
+            const email = document.getElementById('email').value;
+            if (validateEmail(email)) {
+                successModal.style.display = 'block';
+                contactForm.reset();
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function closeModal() {
+            successModal.style.display = 'none';
+        }
+
+        // --- SCROLL SUAVE (MEJORADO PARA HEADER FIJO) ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

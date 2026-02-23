@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro-Interactions Lab</title>
+    <meta name="description" content="Professional UI Animation Lab built with Vanilla JS and CSS Variables">
+    <style>
+        /* * ==========================================
+         * 1. DESIGN TOKENS & RESET
+         * ==========================================
+         */
+        :root {
+            /* Colors - Light Mode Default */
+            --bg-body: #ffffff;
+            --bg-panel: #f9fafb;
+            --border-color: #e5e7eb;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --surface: #ffffff;
+            
+            /* Spacing & Radius */
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            /* Lab Dynamic Variables (Controlled by JS) */
+            --lab-duration: 300ms;
+            --lab-delay: 0ms;
+            --lab-ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --lab-scale: 1;
+            --lab-translate-y: 0px;
+            --lab-opacity: 1;
+            --lab-shadow-blur: 0px;
+            --lab-shadow-opacity: 0;
+            --lab-color: #2563eb;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #000000;
+            --bg-panel: #111111;
+            --border-color: #333333;
+            --text-primary: #ededed;
+            --text-secondary: #a1a1a1;
+            --surface: #1a1a1a;
+            --accent: #3b82f6;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* * ==========================================
+         * 2. LAYOUT
+         * ==========================================
+         */
+        header {
+            height: 60px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--space-lg);
+            background: var(--bg-body);
+            z-index: 10;
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand span { color: var(--text-secondary); font-weight: 400; }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+            aside { display: none; /* Simplification for mobile view in this demo */ }
+        }
+
+        /* * ==========================================
+         * 3. SIDEBAR CONTROLS
+         * ==========================================
+         */
+        aside {
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border-color);
+            padding: var(--space-lg);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .control-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .input-label {
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .value-display {
+            font-family: monospace;
+            color: var(--text-secondary);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .actions {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-sm);
+        }
+
+        button {
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--surface);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        button:hover { background: var(--bg-panel); border-color: var(--text-secondary); }
+        
+        button.primary {
+            background: var(--text-primary);
+            color: var(--bg-body);
+            border-color: var(--text-primary);
+        }
+        
+        button.primary:hover { opacity: 0.9; }
+
+        /* * ==========================================
+         * 4. PREVIEW AREA
+         * ==========================================
+         */
+        main {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-body);
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+        }
+
+        .tabs {
+            display: flex;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-body);
+        }
+
+        .tab-btn {
+            border: none;
+            background: none;
+            padding: 6px 12px;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+        }
+
+        .tab-btn.active {
+            background: var(--bg-panel);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .stage {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+
+        /* * ==========================================
+         * 5. LAB COMPONENTS (The "Subjects")
+         * ==========================================
+         */
+        
+        /* Common base transition logic */
+        .lab-subject {
+            transition-property: transform, background-color, box-shadow, opacity;
+            transition-duration: var(--lab-duration);
+            transition-timing-function: var(--lab-ease);
+            transition-delay: var(--lab-delay);
+            /* Reset transforms for clean state */
+            transform: scale(1) translateY(0);
+        }
+
+        /* Subject: Button */
+        .subject-button {
+            padding: 12px 24px;
+            background-color: var(--text-primary);
+            color: var(--bg-body);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        }
+
+        .subject-button:hover, .subject-button:focus-visible {
+            background-color: var(--lab-color);
+            transform: scale(var(--lab-scale)) translateY(var(--lab-translate-y));
+            box-shadow: 0 10px var(--lab-shadow-blur) rgba(0, 0, 0, var(--lab-shadow-opacity));
+            opacity: var(--lab-opacity);
+        }
+
+        /* Subject: Card */
+        .subject-card {
+            width: 280px;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+        }
+        
+        .subject-card h3 { margin-bottom: 8px; }
+        .subject-card p { color: var(--text-secondary); line-height: 1.5; font-size: 0.9rem; }
+        
+        .subject-card:hover {
+            border-color: var(--lab-color);
+            transform: scale(var(--lab-scale)) translateY(var(--lab-translate-y));
+            box-shadow: 0 20px var(--lab-shadow-blur) rgba(0, 0, 0, var(--lab-shadow-opacity));
+            opacity: var(--lab-opacity);
+        }
+
+        /* Subject: Loader (Keyframes example) */
+        .subject-loader {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--lab-color);
+            border-radius: 50%;
+            /* For continuous animation, we use animation instead of transition */
+            animation: spin var(--lab-duration) var(--lab-ease) infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg) scale(var(--lab-scale)); }
+        }
+
+        /* Code Output Modal */
+        #code-modal {
+            position: fixed;
+            bottom: -100%;
+            left: 0; 
+            right: 0;
+            background: var(--bg-panel);
+            border-top: 1px solid var(--border-color);
+            padding: var(--space-lg);
+            transition: bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+        }
+        
+        #code-modal.active { bottom: 0; }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+        }
+
+        pre {
+            background: var(--bg-body);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            Micro-Lab <span>v1.0</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button id="theme-toggle">☀/☾</button>
+            <button class="primary" id="btn-export">Export CSS</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- CONTROLS SIDEBAR -->
+        <aside>
+            <div class="control-group">
+                <div class="control-header">Timing</div>
+                
+                <div class="input-wrapper">
+                    <label class="input-label">Duration <span id="val-duration" class="value-display">300ms</span></label>
+                    <input type="range" id="inp-duration" min="50" max="2000" step="50" value="300">
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Delay <span id="val-delay" class="value-display">0ms</span></label>
+                    <input type="range" id="inp-delay" min="0" max="1000" step="50" value="0">
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Easing</label>
+                    <select id="inp-easing">
+                        <option value="linear">Linear</option>
+                        <option value="ease">Ease</option>
+                        <option value="ease-out">Ease Out</option>
+                        <option value="ease-in-out">Ease In Out</option>
+                        <option value="cubic-bezier(0.34, 1.56, 0.64, 1)">Spring / Bounce</option>
+                        <option value="cubic-bezier(0.16, 1, 0.3, 1)">Modern / Vercel</option>
+                    </select>
+                </div>
+
+                <label class="checkbox-wrapper">
+                    <input type="checkbox" id="inp-slowmo"> Slow Motion (x5)
+                </label>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color);">
+
+            <div class="control-group">
+                <div class="control-header">Transform (On Hover)</div>
+                
+                <div class="input-wrapper">
+                    <label class="input-label">Scale <span id="val-scale" class="value-display">1</span></label>
+                    <input type="range" id="inp-scale" min="0.5" max="1.5" step="0.01" value="1">
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Translate Y <span id="val-translate" class="value-display">0px</span></label>
+                    <input type="range" id="inp-translate" min="-50" max="50" step="1" value="0">
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color);">
+
+            <div class="control-group">
+                <div class="control-header">Style (On Hover)</div>
+                
+                <div class="input-wrapper">
+                    <label class="input-label">Color Tint</label>
+                    <input type="color" id="inp-color" value="#2563eb" style="width: 100%; height: 32px;">
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Opacity <span id="val-opacity" class="value-display">100%</span></label>
+                    <input type="range" id="inp-opacity" min="0" max="1" step="0.1" value="1">
+                </div>
+
+                <div class="input-wrapper">
+                    <label class="input-label">Shadow Blur <span id="val-shadow" class="value-display">0px</span></label>
+                    <input type="range" id="inp-shadow" min="0" max="50" step="1" value="0">
+                </div>
+                
+                <div class="input-wrapper">
+                    <label class="input-label">Shadow Opacity <span id="val-shadow-op" class="value-display">0</span></label>
+                    <input type="range" id="inp-shadow-op" min="0" max="1" step="0.01" value="0">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="btn-reset">Reset</button>
+                <button id="btn-save">Save Preset</button>
+            </div>
+        </aside>
+
+        <!-- PREVIEW AREA -->
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" data-target="button">Button</button>
+                <button class="tab-btn" data-target="card">Card</button>
+                <button class="tab-btn" data-target="loader">Loader</button>
+            </div>
+
+            <div class="stage">
+                <!-- Dynamic Content injected here -->
+                <button class="lab-subject subject-button" id="preview-element">Hover Me</button>
+            </div>
+
+            <!-- OUTPUT MODAL -->
+            <div id="code-modal">
+                <div class="code-header">
+                    <strong>Generated CSS</strong>
+                    <button id="close-modal" style="padding: 4px 8px; font-size: 0.8rem;">Close</button>
+                </div>
+                <pre id="css-output"></pre>
+                <button class="primary" onclick="navigator.clipboard.writeText(document.getElementById('css-output').innerText)" style="margin-top: 10px; width: 100%;">Copy to Clipboard</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        /**
+         * MICRO-INTERACTIONS LAB ENGINE
+         * Using Vanilla JS with Modern Standards
+         */
+        
+        // 1. STATE MANAGEMENT
+        const defaultState = {
+            duration: 300,
+            delay: 0,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            scale: 1.05,
+            translateY: -4,
+            opacity: 1,
+            shadowBlur: 20,
+            shadowOpacity: 0.15,
+            color: '#2563eb',
+            slowMo: false,
+            activeComponent: 'button',
+            theme: 'dark'
+        };
+
+        // Load from LocalStorage or use default
+        let state = JSON.parse(localStorage.getItem('microLabState')) || { ...defaultState };
+
+        // 2. DOM ELEMENTS CACHE
+        const root = document.documentElement;
+        const stage = document.querySelector('.stage');
+        const inputs = {
+            duration: document.getElementById('inp-duration'),
+            delay: document.getElementById('inp-delay'),
+            easing: document.getElementById('inp-easing'),
+            scale: document.getElementById('inp-scale'),
+            translate: document.getElementById('inp-translate'),
+            opacity: document.getElementById('inp-opacity'),
+            shadow: document.getElementById('inp-shadow'),
+            shadowOp: document.getElementById('inp-shadow-op'),
+            color: document.getElementById('inp-color'),
+            slowMo: document.getElementById('inp-slowmo')
+        };
+        const displays = {
+            duration: document.getElementById('val-duration'),
+            delay: document.getElementById('val-delay'),
+            scale: document.getElementById('val-scale'),
+            translate: document.getElementById('val-translate'),
+            opacity: document.getElementById('val-opacity'),
+            shadow: document.getElementById('val-shadow'),
+            shadowOp: document.getElementById('val-shadow-op')
+        };
+
+        // 3. CORE LOGIC
+
+        function init() {
+            // Apply saved theme
+            root.setAttribute('data-theme', state.theme);
+            
+            // Sync UI inputs with State
+            syncInputsWithState();
+            
+            // Apply State to CSS Variables
+            render();
+            
+            // Render the correct component
+            switchComponent(state.activeComponent);
+
+            setupListeners();
+        }
+
+        function syncInputsWithState() {
+            inputs.duration.value = state.duration;
+            inputs.delay.value = state.delay;
+            inputs.easing.value = state.easing;
+            inputs.scale.value = state.scale;
+            inputs.translate.value = state.translateY;
+            inputs.opacity.value = state.opacity;
+            inputs.shadow.value = state.shadowBlur;
+            inputs.shadowOp.value = state.shadowOpacity;
+            inputs.color.value = state.color;
+            inputs.slowMo.checked = state.slowMo;
+        }
+
+        function updateState(key, value) {
+            state[key] = value;
+            
+            // Update Text Displays
+            if (displays[key]) {
+                const suffix = key === 'duration' || key === 'delay' ? 'ms' : 
+                               key === 'translate' ? 'px' : 
+                               key === 'opacity' ? '%' : '';
+                
+                let displayValue = value;
+                if (key === 'opacity') displayValue = Math.round(value * 100);
+                
+                displays[key].textContent = `${displayValue}${suffix}`;
+            }
+
+            render();
+            save();
+        }
+
+        function render() {
+            // Calculate effective duration based on Slow Motion
+            const effectiveDuration = state.slowMo ? state.duration * 5 : state.duration;
+            const effectiveDelay = state.slowMo ? state.delay * 5 : state.delay;
+
+            // Set CSS Variables on Root
+            root.style.setProperty('--lab-duration', `${effectiveDuration}ms`);
+            root.style.setProperty('--lab-delay', `${effectiveDelay}ms`);
+            root.style.setProperty('--lab-ease', state.easing);
+            root.style.setProperty('--lab-scale', state.scale);
+            root.style.setProperty('--lab-translate-y', `${state.translateY}px`);
+            root.style.setProperty('--lab-opacity', state.opacity);
+            root.style.setProperty('--lab-shadow-blur', `${state.shadowBlur}px`);
+            root.style.setProperty('--lab-shadow-opacity', state.shadowOpacity);
+            root.style.setProperty('--lab-color', state.color);
+        }
+
+        function save() {
+            localStorage.setItem('microLabState', JSON.stringify(state));
+        }
+
+        // 4. COMPONENT SWITCHING
+        const components = {
+            button: `<button class="lab-subject subject-button" id="preview-element">Hover Me</button>`,
+            card: `
+                <div class="lab-subject subject-card" id="preview-element">
+                    <h3>Interactive Card</h3>
+                    <p>Hover over this card to see the transform, shadow, and scale properties in action.</p>
+                </div>
+            `,
+            loader: `<div class="lab-subject subject-loader" id="preview-element"></div>`
+        };
+
+        function switchComponent(type) {
+            state.activeComponent = type;
+            stage.innerHTML = components[type];
+            
+            // Update Tab UI
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.target === type);
+            });
+            save();
+        }
+
+        // 5. EVENT LISTENERS
+        function setupListeners() {
+            // Inputs
+            inputs.duration.addEventListener('input', (e) => updateState('duration', Number(e.target.value)));
+            inputs.delay.addEventListener('input', (e) => updateState('delay', Number(e.target.value)));
+            inputs.scale.addEventListener('input', (e) => updateState('scale', Number(e.target.value)));
+            inputs.translate.addEventListener('input', (e) => updateState('translateY', Number(e.target.value)));
+            inputs.opacity.addEventListener('input', (e) => updateState('opacity', Number(e.target.value)));
+            inputs.shadow.addEventListener('input', (e) => updateState('shadowBlur', Number(e.target.value)));
+            inputs.shadowOp.addEventListener('input', (e) => updateState('shadowOpacity', Number(e.target.value)));
+            inputs.color.addEventListener('input', (e) => updateState('color', e.target.value));
+            
+            inputs.easing.addEventListener('change', (e) => updateState('easing', e.target.value));
+            inputs.slowMo.addEventListener('change', (e) => updateState('slowMo', e.target.checked));
+
+            // Tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => switchComponent(btn.dataset.target));
+            });
+
+            // Theme Toggle
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                state.theme = state.theme === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', state.theme);
+                save();
+            });
+
+            // Reset
+            document.getElementById('btn-reset').addEventListener('click', () => {
+                state = { ...defaultState };
+                init();
+            });
+
+            // Export Logic
+            const modal = document.getElementById('code-modal');
+            const output = document.getElementById('css-output');
+            
+            document.getElementById('btn-export').addEventListener('click', () => {
+                const css = generateCSS();
+                output.innerText = css;
+                modal.classList.add('active');
+            });
+
+            document.getElementById('close-modal').addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+        }
+
+        function generateCSS() {
+            return `.element {
+    /* Base Transition */
+    transition: all ${state.duration}ms ${state.easing} ${state.delay}ms;
+}
+
+.element:hover {
+    transform: scale(${state.scale}) translateY(${state.translateY}px);
+    opacity: ${state.opacity};
+    box-shadow: 0 10px ${state.shadowBlur}px rgba(0,0,0, ${state.shadowOpacity});
+    
+    /* Optional: Color tint if needed */
+    /* background-color: ${state.color}; */
+}`;
+        }
+
+        // Initialize App
+        init();
+
+    </script>
+</body>
+</html>

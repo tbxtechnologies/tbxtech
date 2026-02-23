@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit | Tu Transformación Empieza Aquí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap');
+
+        :root {
+            --neon-yellow: #ccff00;
+            --dark-bg: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+        }
+
+        .font-impact {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .bg-neon {
+            background-color: var(--neon-yellow);
+        }
+
+        .text-neon {
+            color: var(--neon-yellow);
+        }
+
+        .border-neon {
+            border-color: var(--neon-yellow);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px -10px var(--neon-yellow);
+        }
+
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--neon-yellow);
+            transition: width .3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span class="font-impact text-3xl tracking-tighter italic"><span class="text-neon">POWER</span>FIT</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#inicio" class="nav-link px-3 py-2 text-sm font-medium">Inicio</a>
+                        <a href="#clases" class="nav-link px-3 py-2 text-sm font-medium">Clases</a>
+                        <a href="#entrenadores" class="nav-link px-3 py-2 text-sm font-medium">Entrenadores</a>
+                        <a href="#planes" class="nav-link px-3 py-2 text-sm font-medium">Planes</a>
+                        <a href="#contacto" class="bg-neon text-black px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform text-sm">ÚNETE AHORA</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="text-white">
+                        <i data-lucide="menu" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black border-b border-white/10 px-4 pt-2 pb-6 space-y-2">
+            <a href="#inicio" class="block px-3 py-2 text-base font-medium">Inicio</a>
+            <a href="#clases" class="block px-3 py-2 text-base font-medium">Clases</a>
+            <a href="#entrenadores" class="block px-3 py-2 text-base font-medium">Entrenadores</a>
+            <a href="#planes" class="block px-3 py-2 text-base font-medium">Planes</a>
+            <a href="#contacto" class="block px-3 py-2 text-base font-bold text-neon">Únete Ahora</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient h-screen flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl">
+            <h1 class="font-impact text-6xl md:text-9xl mb-4 animate__animated animate__fadeInUp italic">SIN LÍMITES</h1>
+            <p class="text-xl md:text-2xl mb-8 font-light tracking-widest text-gray-300 animate__animated animate__fadeInUp animate__delay-1s">
+                EL DOLOR ES TEMPORAL, LA GLORIA ES PARA SIEMPRE.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="#inscripcion" class="bg-neon text-black px-10 py-4 rounded-full font-black text-lg hover:shadow-[0_0_20px_#ccff00] transition-all">EMPEZAR HOY</a>
+                <a href="#clases" class="border-2 border-white px-10 py-4 rounded-full font-black text-lg hover:bg-white hover:text-black transition-all">VER CLASES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stat Counter -->
+    <section class="py-12 bg-neon text-black">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="font-impact text-5xl counter" data-target="1500">0</div>
+                <div class="text-sm font-bold uppercase">Socios Activos</div>
+            </div>
+            <div>
+                <div class="font-impact text-5xl counter" data-target="20">0</div>
+                <div class="text-sm font-bold uppercase">Entrenadores PRO</div>
+            </div>
+            <div>
+                <div class="font-impact text-5xl counter" data-target="50">0</div>
+                <div class="text-sm font-bold uppercase">Clases Semanales</div>
+            </div>
+            <div>
+                <div class="font-impact text-5xl counter" data-target="100">0</div>
+                <div class="text-sm font-bold uppercase">% Motivación</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="clases" class="py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-neon font-bold tracking-widest mb-2 italic">NUESTRAS DISCIPLINAS</h2>
+                    <h3 class="font-impact text-5xl">SUPERA TUS PROPIAS MARCAS</h3>
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-gray-400 max-w-xs text-right">Contamos con instalaciones de última generación y equipos de élite.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Class 1 -->
+                <div class="relative group overflow-hidden rounded-2xl h-80 transition-transform duration-500 hover:scale-95">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1470&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Crossfit">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <h4 class="font-impact text-3xl">CROSSFIT</h4>
+                        <p class="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">Entrenamiento funcional de alta intensidad.</p>
+                    </div>
+                </div>
+                <!-- Class 2 -->
+                <div class="relative group overflow-hidden rounded-2xl h-80 transition-transform duration-500 hover:scale-95">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1440&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Yoga">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <h4 class="font-impact text-3xl">YOGA ZEN</h4>
+                        <p class="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">Flexibilidad y control mental profundo.</p>
+                    </div>
+                </div>
+                <!-- Class 3 -->
+                <div class="relative group overflow-hidden rounded-2xl h-80 transition-transform duration-500 hover:scale-95">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1470&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Boxing">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-8">
+                        <h4 class="font-impact text-3xl">BOXING</h4>
+                        <p class="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity">Descarga energía y mejora tus reflejos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 overflow-x-auto">
+            <h3 class="font-impact text-5xl text-center mb-16 italic">HORARIOS DE <span class="text-neon">BATALLA</span></h3>
+            <table class="w-full text-left border-collapse min-w-[600px]">
+                <thead>
+                    <tr class="border-b border-white/20">
+                        <th class="py-4 font-impact text-xl">Hora</th>
+                        <th class="py-4 font-impact text-xl">Lunes</th>
+                        <th class="py-4 font-impact text-xl">Miércoles</th>
+                        <th class="py-4 font-impact text-xl">Viernes</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-400">
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td class="py-6">07:00 AM</td>
+                        <td>Spinning</td>
+                        <td>Crossfit</td>
+                        <td>Yoga</td>
+                    </tr>
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td class="py-6">05:00 PM</td>
+                        <td>Boxing</td>
+                        <td>Body Pump</td>
+                        <td>HIIT</td>
+                    </tr>
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td class="py-6">08:00 PM</td>
+                        <td>Zumba</td>
+                        <td>Weightlifting</td>
+                        <td>Boxeo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Trainers -->
+    <section id="entrenadores" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="font-impact text-5xl mb-16">EQUIPO DE <span class="text-neon">ÉLITE</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-neon transition-all">
+                        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=400&h=400&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h4 class="font-impact text-xl">Carlos "Thor"</h4>
+                    <p class="text-neon text-sm uppercase">Fuerza Bruta</p>
+                </div>
+                <div class="text-center group">
+                    <div class="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-neon transition-all">
+                        <img src="https://images.unsplash.com/photo-1548690312-e3b507d17a47?q=80&w=400&h=400&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h4 class="font-impact text-xl">Elena Power</h4>
+                    <p class="text-neon text-sm uppercase">Crosstraining</p>
+                </div>
+                <div class="text-center group">
+                    <div class="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-neon transition-all">
+                        <img src="https://images.unsplash.com/photo-149175235542e-1bd51d86287b?q=80&w=400&h=400&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h4 class="font-impact text-xl">Miki Fit</h4>
+                    <p class="text-neon text-sm uppercase">Nutrición & Cardio</p>
+                </div>
+                <div class="text-center group">
+                    <div class="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-neon transition-all">
+                        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=400&h=400&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <h4 class="font-impact text-xl">Sonia Zen</h4>
+                    <p class="text-neon text-sm uppercase">Flexibilidad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="planes" class="py-24 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-impact text-5xl text-center mb-16 italic">ELIGE TU <span class="text-neon">MEMBRESÍA</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan 1 -->
+                <div class="p-8 bg-black rounded-3xl border border-white/10 card-hover transition-all">
+                    <h4 class="font-impact text-2xl mb-2">BÁSICO</h4>
+                    <div class="text-5xl font-impact text-neon mb-6">$29<span class="text-sm text-gray-500 uppercase">/mes</span></div>
+                    <ul class="space-y-4 mb-8 text-gray-400">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Acceso GYM (L-V)</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Vestuarios</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i data-lucide="x" class="w-5"></i> Clases dirigidas</li>
+                    </ul>
+                    <button class="w-full py-4 border-2 border-white rounded-xl font-bold hover:bg-white hover:text-black transition-all">SELECCIONAR</button>
+                </div>
+                <!-- Plan 2 -->
+                <div class="p-8 bg-black rounded-3xl border-2 border-neon card-hover transition-all relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-neon text-black px-4 py-1 rounded-full text-xs font-black uppercase">MÁS POPULAR</div>
+                    <h4 class="font-impact text-2xl mb-2">GUERRERO</h4>
+                    <div class="text-5xl font-impact text-neon mb-6">$49<span class="text-sm text-gray-500 uppercase">/mes</span></div>
+                    <ul class="space-y-4 mb-8 text-gray-400">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Acceso 24/7</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Todas las clases</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> App personalizada</li>
+                    </ul>
+                    <button class="w-full py-4 bg-neon text-black rounded-xl font-black hover:scale-105 transition-all">SELECCIONAR</button>
+                </div>
+                <!-- Plan 3 -->
+                <div class="p-8 bg-black rounded-3xl border border-white/10 card-hover transition-all">
+                    <h4 class="font-impact text-2xl mb-2">ELITE</h4>
+                    <div class="text-5xl font-impact text-neon mb-6">$89<span class="text-sm text-gray-500 uppercase">/mes</span></div>
+                    <ul class="space-y-4 mb-8 text-gray-400">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Plan Nutricional</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Entrenador Personal</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="text-neon w-5"></i> Zona Spa & Sauna</li>
+                    </ul>
+                    <button class="w-full py-4 border-2 border-white rounded-xl font-bold hover:bg-white hover:text-black transition-all">SELECCIONAR</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="inscripcion" class="py-24 flex flex-col items-center">
+        <div class="max-w-2xl w-full px-4">
+            <div class="bg-black p-10 rounded-3xl border border-white/10 shadow-2xl relative">
+                <h3 class="font-impact text-5xl mb-4 text-center">SOLICITA TU <span class="text-neon italic">PASE VIP</span></h3>
+                <p class="text-center text-gray-400 mb-10 text-sm italic">Te llamaremos en menos de 24 horas para agendar tu primera sesión gratis.</p>
+                <form onsubmit="handleSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Tu Nombre Completo" required class="bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-neon transition-all">
+                        <input type="email" placeholder="Tu Correo" required class="bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-neon transition-all">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="tel" placeholder="Tu Teléfono" required class="bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-neon transition-all">
+                        <select class="bg-white/5 border border-white/10 p-4 rounded-xl focus:outline-none focus:border-neon transition-all text-gray-400">
+                            <option value="">¿Objetivo?</option>
+                            <option value="fuerza">Ganar Fuerza</option>
+                            <option value="peso">Perder Peso</option>
+                            <option value="salud">Salud General</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-neon text-black font-black py-5 rounded-xl text-xl hover:shadow-[0_0_30px_#ccff00] transition-all">RESERVAR MI CLASE GRATIS</button>
+                </form>
+                <div id="success-msg" class="hidden absolute inset-0 bg-black flex flex-col items-center justify-center text-center p-10 rounded-3xl">
+                    <i data-lucide="check-circle" class="text-neon w-20 h-20 mb-4 animate-bounce"></i>
+                    <h4 class="font-impact text-3xl">¡RECIBIDO, CAMPEÓN!</h4>
+                    <p class="text-gray-400 mt-2">Pronto nos pondremos en contacto contigo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-black pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
+            <div>
+                <span class="font-impact text-3xl tracking-tighter italic block mb-6"><span class="text-neon">POWER</span>FIT</span>
+                <p class="text-gray-500 text-sm">Convertimos tus excusas en resultados. Entrena con los mejores en el mejor ambiente.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 uppercase text-sm tracking-widest text-white">Links Rápidos</h5>
+                <ul class="text-gray-500 text-sm space-y-4">
+                    <li><a href="#" class="hover:text-neon">Sobre Nosotros</a></li>
+                    <li><a href="#" class="hover:text-neon">Nuestras Sedes</a></li>
+                    <li><a href="#" class="hover:text-neon">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 uppercase text-sm tracking-widest text-white">Síguenos</h5>
+                <div class="flex justify-center md:justify-start gap-4">
+                    <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-neon hover:text-black transition-all">
+                        <i data-lucide="instagram" class="w-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-neon hover:text-black transition-all">
+                        <i data-lucide="facebook" class="w-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-neon hover:text-black transition-all">
+                        <i data-lucide="youtube" class="w-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h5 class="font-bold mb-6 uppercase text-sm tracking-widest text-white">Contacto</h5>
+                <p class="text-gray-500 text-sm">Av. Deportiva 123, Ciudad Fitness</p>
+                <p class="text-gray-500 text-sm mt-2">+34 900 800 700</p>
+                <p class="text-neon text-sm mt-2">info@powerfit.com</p>
+            </div>
+        </div>
+        <div class="text-center text-gray-600 text-[10px] uppercase tracking-[0.2em] border-t border-white/5 pt-10">
+            &copy; 2024 PowerFit Gym. Diseñado para Ganadores.
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            const isHidden = menu.classList.contains('hidden');
+            icon.setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+            lucide.createIcons();
+        }
+
+        // Form Submit Simulation
+        function handleSubmit(e) {
+            e.preventDefault();
+            const msg = document.getElementById('success-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+                e.target.reset();
+            }, 5000);
+        }
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = +counter.innerText;
+                const inc = target / speed;
+
+                const updateCount = () => {
+                    if (count < target) {
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                }
+                updateCount();
+            });
+        }
+
+        // Intersection Observer for counters
+        const observer = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                animateCounters();
+                observer.disconnect();
+            }
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.counter').parentElement.parentElement);
+
+        // Smooth reveal on scroll (Simple)
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black');
+            } else {
+                nav.classList.remove('bg-black');
+            }
+        });
+    </script>
+</body>
+</html>

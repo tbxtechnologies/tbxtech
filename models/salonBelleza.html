@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Glamour Studio | Salón de Belleza y Uñas</title>
+    <meta name="description" content="Glamour Studio: Salón de belleza femenino premium. Especialistas en uñas, manicure, pedicure, nail art, extensiones de pestañas, diseño de cejas y maquillaje profesional.">
+    <meta name="keywords" content="salón de belleza, uñas, manicure, nail art, pestañas, maquillaje profesional, tratamientos capilares, belleza femenina">
+    <meta name="author" content="Glamour Studio">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastel: '#FDE2E4',
+                        nude: '#F5E6E8',
+                        gold: '#D4AF37',
+                        dark: '#333333'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .service-card:hover img { transform: scale(1.05); }
+        .gallery-img { transition: transform 0.3s ease; }
+        .gallery-img:hover { transform: scale(1.03); cursor: pointer; }
+        /* Botón WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover { background-color: #128C7E; transform: translateY(-5px); }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "Glamour Studio",
+      "image": "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "@id": "",
+      "url": "https://www.glamourstudio.com",
+      "telephone": "+521234567890",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Principal 123",
+        "addressLocality": "Ciudad",
+        "addressRegion": "Estado",
+        "postalCode": "00000",
+        "addressCountry": "MX"
+      }
+    }
+    </script>
+</head>
+<body class="font-sans text-dark antialiased bg-white">
+
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl font-bold text-gold tracking-wider">GLAMOUR<span class="text-dark font-sans text-xl font-light">STUDIO</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-gold transition">Inicio</a>
+                    <a href="#servicios" class="text-gray-600 hover:text-gold transition">Servicios</a>
+                    <a href="#galeria" class="text-gray-600 hover:text-gold transition">Galería</a>
+                    <a href="#nosotros" class="text-gray-600 hover:text-gold transition">Nosotros</a>
+                    <a href="#contacto" class="text-gray-600 hover:text-gold transition">Contacto</a>
+                    <a href="#contacto" class="bg-gold text-white px-6 py-2 rounded-full font-medium hover:bg-yellow-600 transition shadow-lg">Reservar Cita</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-gold focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#inicio" class="block px-3 py-2 text-gray-800 hover:text-gold">Inicio</a>
+                <a href="#servicios" class="block px-3 py-2 text-gray-800 hover:text-gold">Servicios</a>
+                <a href="#galeria" class="block px-3 py-2 text-gray-800 hover:text-gold">Galería</a>
+                <a href="#nosotros" class="block px-3 py-2 text-gray-800 hover:text-gold">Nosotros</a>
+                <a href="#contacto" class="block px-3 py-2 text-gray-800 hover:text-gold">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center bg-nude">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1516975080661-46bfa20281ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Mujer hermosa en salón" class="w-full h-full object-cover opacity-40" loading="lazy">
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="font-serif text-5xl md:text-7xl text-dark mb-6 leading-tight">Realza tu belleza con <span class="italic text-gold">manos expertas</span></h1>
+            <p class="text-lg md:text-xl text-gray-700 mb-10 font-light">Descubre una experiencia premium de cuidado personal diseñada exclusivamente para ti.</p>
+            <a href="#contacto" class="bg-dark text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gold transition duration-300 shadow-xl inline-block">Agenda tu cita ahora</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-serif text-4xl text-dark mb-4">Nuestros Servicios</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4"></div>
+                <p class="text-gray-500">Tratamientos de alta calidad para resaltar tu mejor versión.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="service-card bg-nude rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Manicure y Uñas" class="w-full h-full object-cover transition duration-500" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold text-gold">$25+</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-2">Nails & Spa</h3>
+                        <p class="text-gray-600 text-sm mb-4">Manicure, pedicure, acrílicas, gelish y el mejor nail art de la ciudad.</p>
+                    </div>
+                </div>
+                <div class="service-card bg-nude rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a1dc8f411953?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pestañas y Cejas" class="w-full h-full object-cover transition duration-500" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold text-gold">$40+</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-2">Pestañas & Cejas</h3>
+                        <p class="text-gray-600 text-sm mb-4">Extensiones volumen ruso, lifting, laminado y diseño de cejas.</p>
+                    </div>
+                </div>
+                <div class="service-card bg-nude rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Maquillaje Profesional" class="w-full h-full object-cover transition duration-500" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold text-gold">$60+</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-2">Makeup Studio</h3>
+                        <p class="text-gray-600 text-sm mb-4">Maquillaje social, novias, editorial y cursos de automaquillaje.</p>
+                    </div>
+                </div>
+                <div class="service-card bg-nude rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tratamientos Capilares" class="w-full h-full object-cover transition duration-500" loading="lazy">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold text-gold">$50+</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-2">Hair Care</h3>
+                        <p class="text-gray-600 text-sm mb-4">Tratamientos hidratantes, botox capilar, peinados y ondas perfectas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-20 bg-pastel text-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-serif text-4xl mb-4">Nuestro Arte</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-4"></div>
+                <p class="text-gray-700">Explora algunos de nuestros trabajos favoritos.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="gallery-img w-full h-full object-cover" alt="Nail art" loading="lazy">
+                </div>
+                <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1588824364239-2ce13854181a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="gallery-img w-full h-full object-cover" alt="Maquillaje" loading="lazy">
+                </div>
+                <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="gallery-img w-full h-full object-cover" alt="Pestañas" loading="lazy">
+                </div>
+                <div class="aspect-square overflow-hidden rounded-lg" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="gallery-img w-full h-full object-cover" alt="Peinado" loading="lazy">
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="https://instagram.com" target="_blank" class="text-gold font-medium hover:text-dark transition"><i class="fab fa-instagram mr-2"></i>Ver más en nuestro Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-serif text-4xl text-dark mb-4">Sobre Nosotros</h2>
+                    <div class="w-16 h-1 bg-gold mb-6"></div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">En <strong class="text-dark">Glamour Studio</strong> creemos que la belleza exterior es un reflejo del amor propio. Nacimos con la misión de crear un espacio seguro, elegante y relajante donde cada mujer pueda sentirse mimada y empoderada.</p>
+                    <p class="text-gray-600 leading-relaxed">Nuestro equipo está conformado por artistas apasionadas y en constante capacitación, utilizando únicamente productos de la más alta calidad.</p>
+                </div>
+                
+                <div class="relative" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-gold rounded-2xl transform translate-x-4 translate-y-4"></div>
+                    <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipo Glamour Studio" class="relative rounded-2xl z-10 w-full h-auto object-cover shadow-lg" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-20 bg-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <div data-aos="fade-up">
+                    <h2 class="font-serif text-4xl mb-4">Agenda tu cita</h2>
+                    <p class="text-gray-400 mb-8">Déjanos tus datos y nos pondremos en contacto contigo para confirmar tu reserva.</p>
+                    
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Nombre completo</label>
+                                <input type="text" class="w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold transition" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Teléfono / WhatsApp</label>
+                                <input type="tel" class="w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold transition" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Servicio de interés</label>
+                                <select class="w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold transition [&>option]:text-dark">
+                                    <option value="uñas">Uñas / Manicure</option>
+                                    <option value="pestañas">Pestañas / Cejas</option>
+                                    <option value="maquillaje">Maquillaje</option>
+                                    <option value="cabello">Tratamientos Capilares</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Fecha deseada</label>
+                                <input type="date" class="w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold transition" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-gold text-dark font-bold text-lg py-4 rounded-lg hover:bg-white transition duration-300">Solicitar Reserva</button>
+                    </form>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col justify-between">
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">Ubicación</h4>
+                                <p class="text-gray-400">Av. Las Palmas 456, Colonia Belleza<br>Ciudad de México, CP 11000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-gold text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">Horarios</h4>
+                                <p class="text-gray-400">Lunes a Sábado: 9:00 AM - 7:00 PM<br>Domingos: Cerrado</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-gold text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">Contacto Directo</h4>
+                                <p class="text-gray-400">+52 55 1234 5678</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full h-64 bg-gray-700 rounded-xl overflow-hidden grayscale hover:grayscale-0 transition duration-500">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.662768407481!2d-99.1711!3d19.427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzM3LjIiTiA5OcKwMTAnMTYuMCJX!5e0!3m2!1ses!2smx!4v1600000000000!5m2!1ses!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPACIO PROMOCIONAL DESARROLLADOR -->
+    <section class="py-12 bg-white border-y border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full border border-gold flex items-center justify-center text-gold">
+                        <i class="fas fa-desktop text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-dark font-semibold text-sm">¿Deseas una presencia digital de este nivel?</p>
+                        <p class="text-gray-600 text-xs">Ponte en contacto con el desarrollador.</p>
+                    </div>
+                </div>
+                <a href="https://tbxtechnologies.github.io/tbxtech/" target="_blank" class="px-8 py-3 border border-dark text-dark font-bold text-[10px] uppercase tracking-widest hover:bg-dark hover:text-white transition-all">Visitar Portafolio de TBX TECHNOLOGIES</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <span class="font-serif text-2xl font-bold text-gold tracking-wider block mb-2">GLAMOUR<span class="text-white font-sans text-xl font-light">STUDIO</span></span>
+                <p class="text-sm">© 2026 Glamour Studio. Todos los derechos reservados.</p>
+            </div>
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="#" class="text-gray-400 hover:text-gold text-xl transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold text-xl transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-gold text-xl transition"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="text-sm text-center md:text-right flex flex-col space-y-2">
+                <a href="#" class="hover:text-white transition">Aviso de Privacidad</a>
+                <a href="#" class="hover:text-white transition">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/525512345678?text=Hola%20Glamour%20Studio,%20me%20gustar%C3%ADa%20agendar%20una%20cita." target="_blank" class="whatsapp-float" aria-label="Chat en WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones de scroll
+        AOS.init({
+            once: true, // La animación solo ocurre una vez
+            offset: 100 // Inicia 100px antes de llegar al elemento
+        });
+
+        // Menú Hamburguesa Móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

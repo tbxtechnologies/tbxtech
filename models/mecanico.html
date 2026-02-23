@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoFix Pro | Taller Mecánico de Confianza y Servicio Rápido</title>
+    <meta name="description" content="Servicio mecánico automotriz profesional. Reparación de frenos, motor, suspensión y diagnóstico computarizado. Atención rápida y precios justos cerca de ti.">
+    <meta name="keywords" content="mecanico, taller automotriz, reparacion autos, cambio aceite, frenos, diagnostico auto">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN para desarrollo rápido y optimización) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',    // Azul muy oscuro (profesionalidad)
+                            primary: '#2563eb', // Azul vibrante (confianza)
+                            accent: '#ef4444',  // Rojo (acción/urgencia)
+                            gray: '#f3f4f6'     // Fondo suave
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Russo One', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para efectos específicos */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Animación suave para el menú móvil */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+    <!-- Header Fijo -->
+    <header class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-gear text-brand-accent text-3xl fa-spin-pulse" style="--fa-animation-duration: 3s;"></i>
+                    <span class="font-heading text-2xl text-brand-dark tracking-wide">AUTO<span class="text-brand-primary">FIX</span></span>
+                </div>
+
+                <!-- Navegación Desktop -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-slate-600 hover:text-brand-primary font-semibold transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-slate-600 hover:text-brand-primary font-semibold transition-colors">Servicios</a>
+                    <a href="#beneficios" class="text-slate-600 hover:text-brand-primary font-semibold transition-colors">Por qué elegirnos</a>
+                    <a href="#testimonios" class="text-slate-600 hover:text-brand-primary font-semibold transition-colors">Testimonios</a>
+                </nav>
+
+                <!-- Botón de Acción Desktop -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#contacto" class="text-brand-primary font-bold hover:underline">Ubicación</a>
+                    <a href="tel:+1234567890" class="bg-brand-accent hover:bg-red-600 text-white px-6 py-2.5 rounded-full font-bold shadow-lg transition-transform hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-phone"></i> Llamar Ahora
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-primary focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil (Desplegable) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-gray" onclick="closeMenu()">Inicio</a>
+                <a href="#servicios" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-gray" onclick="closeMenu()">Servicios</a>
+                <a href="#beneficios" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-gray" onclick="closeMenu()">Por qué elegirnos</a>
+                <a href="#contacto" class="block px-3 py-3 rounded-md text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-brand-gray" onclick="closeMenu()">Contacto</a>
+                <div class="pt-4 flex flex-col gap-3">
+                    <a href="tel:+1234567890" class="w-full text-center bg-brand-accent text-white px-4 py-3 rounded-lg font-bold shadow-md">
+                        <i class="fa-solid fa-phone mr-2"></i> Llamar Ahora
+                    </a>
+                    <a href="https://wa.me/" class="w-full text-center bg-green-500 text-white px-4 py-3 rounded-lg font-bold shadow-md">
+                        <i class="fa-brands fa-whatsapp mr-2"></i> Enviar WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero-bg h-screen min-h-[600px] flex items-center justify-center relative pt-20">
+        <div class="container mx-auto px-4 text-center text-white relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-primary/80 text-sm font-semibold tracking-wide mb-4 animate-pulse">
+                <i class="fa-solid fa-check-circle mr-1"></i> Abierto hoy hasta las 7:00 PM
+            </span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading mb-6 leading-tight">
+                Tu Auto en Manos de <br/>
+                <span class="text-brand-primary drop-shadow-lg">Expertos Certificados</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-slate-200 mb-8 max-w-2xl mx-auto font-light">
+                Diagnóstico preciso, reparación rápida y precios transparentes. Recupera la seguridad de tu vehículo hoy mismo.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contacto" class="w-full sm:w-auto bg-brand-primary hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex justify-center items-center gap-2">
+                    <i class="fa-regular fa-calendar-check"></i> Agendar Cita
+                </a>
+                <a href="tel:+1234567890" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex justify-center items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> Cotizar por Chat
+                </a>
+            </div>
+        </div>
+        
+        <!-- Flecha scroll -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#servicios" class="text-white/70 hover:text-white">
+                <i class="fa-solid fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-heading text-brand-dark mb-4">Nuestros Servicios Especializados</h2>
+                <div class="w-20 h-1 bg-brand-accent mx-auto rounded-full mb-4"></div>
+                <p class="text-slate-600 max-w-2xl mx-auto">Cubrimos todas las necesidades de tu vehículo con tecnología de punta y refacciones originales.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Servicio 1 -->
+                <article class="service-card bg-brand-gray p-8 rounded-2xl text-center border border-slate-100">
+                    <div class="w-16 h-16 bg-blue-100 text-brand-primary rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Mecánica General</h3>
+                    <p class="text-slate-600 text-sm">Afinación mayor y menor, reparación de motor, bandas de distribución y sistemas de escape.</p>
+                </article>
+
+                <!-- Servicio 2 -->
+                <article class="service-card bg-brand-gray p-8 rounded-2xl text-center border border-slate-100">
+                    <div class="w-16 h-16 bg-red-100 text-brand-accent rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-car-burst"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Frenos y Suspensión</h3>
+                    <p class="text-slate-600 text-sm">Balatas, rectificación de discos, amortiguadores y alineación para tu seguridad.</p>
+                </article>
+
+                <!-- Servicio 3 -->
+                <article class="service-card bg-brand-gray p-8 rounded-2xl text-center border border-slate-100">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Scanner y Eléctrico</h3>
+                    <p class="text-slate-600 text-sm">Diagnóstico computarizado OBD2, fallas de encendido, baterías, alternadores y luces.</p>
+                </article>
+
+                <!-- Servicio 4 -->
+                <article class="service-card bg-brand-gray p-8 rounded-2xl text-center border border-slate-100">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fa-solid fa-oil-can"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-dark mb-3">Cambio de Aceite</h3>
+                    <p class="text-slate-600 text-sm">Mantenimiento preventivo express con aceites sintéticos y filtros de alta calidad.</p>
+                </article>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contacto" class="inline-flex items-center text-brand-primary font-bold hover:text-brand-dark transition-colors">
+                    Ver todos los servicios <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios / Por qué elegirnos -->
+    <section id="beneficios" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+        <!-- Elemento decorativo de fondo -->
+        <i class="fa-solid fa-gears absolute -right-20 -bottom-20 text-[20rem] text-white/5 rotate-12"></i>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Mecánico trabajando" class="rounded-lg shadow-2xl border-4 border-white/10" onerror="this.src='https://placehold.co/600x400?text=Taller+Mecanico'">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-heading mb-6">¿Por qué confiar en <span class="text-brand-primary">AutoFix</span>?</h2>
+                    <p class="text-slate-300 mb-8 text-lg">No somos un taller más. Entendemos que tu auto es vital para tu día a día, por eso nos enfocamos en honestidad y rapidez.</p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-clock text-white"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold">Entregas a Tiempo</h4>
+                                <p class="text-slate-400 text-sm">Respetamos tu tiempo. Si decimos que está listo el martes, estará listo el martes.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-file-invoice-dollar text-white"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold">Presupuestos Claros</h4>
+                                <p class="text-slate-400 text-sm">Sin sorpresas ni "letras chiquitas". Te explicamos cada costo antes de empezar.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-certificate text-white"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold">Garantía por Escrito</h4>
+                                <p class="text-slate-400 text-sm">Todos nuestros trabajos incluyen garantía en mano de obra y refacciones.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Testimonios -->
+    <section id="testimonios" class="py-20 bg-brand-gray">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-heading text-center text-brand-dark mb-12">Lo que dicen nuestros clientes</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonio 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-brand-primary">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic">"Llegué con un ruido extraño en el motor que nadie encontraba. En AutoFix lo diagnosticaron en 30 minutos y lo repararon el mismo día. Excelente servicio."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">JP</div>
+                        <div class="ml-3">
+                            <p class="font-bold text-brand-dark">Juan Pérez</p>
+                            <p class="text-xs text-slate-500">Cliente Local</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-brand-primary">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic">"Precios muy justos comparados con la agencia. Me gustó mucho que me enviaran fotos de las piezas cambiadas por WhatsApp. Muy transparentes."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">MG</div>
+                        <div class="ml-3">
+                            <p class="font-bold text-brand-dark">María González</p>
+                            <p class="text-xs text-slate-500">Uber Driver</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border-t-4 border-brand-primary">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 mb-6 italic">"Me salvaron el fin de semana. Se me calentó el carro y fueron por mí. La reparación fue rápida y el trato muy amable. 100% recomendados."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-500">RL</div>
+                        <div class="ml-3">
+                            <p class="font-bold text-brand-dark">Roberto López</p>
+                            <p class="text-xs text-slate-500">Cliente Local</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto y Mapa -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Información y Formulario -->
+                <div>
+                    <h2 class="text-3xl font-heading text-brand-dark mb-6">Contáctanos</h2>
+                    <p class="text-slate-600 mb-8">¿Tienes alguna duda o quieres agendar una cita? Llámanos o déjanos un mensaje.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center p-4 bg-blue-50 rounded-lg">
+                            <i class="fa-solid fa-phone text-2xl text-brand-primary mr-4"></i>
+                            <div>
+                                <p class="text-sm text-slate-500 font-semibold">Teléfono</p>
+                                <a href="tel:+1234567890" class="font-bold text-brand-dark hover:text-brand-primary text-lg">55 1234 5678</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-green-50 rounded-lg">
+                            <i class="fa-brands fa-whatsapp text-2xl text-green-500 mr-4"></i>
+                            <div>
+                                <p class="text-sm text-slate-500 font-semibold">WhatsApp</p>
+                                <a href="https://wa.me/5512345678" class="font-bold text-brand-dark hover:text-green-600 text-lg">55 1234 5678</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-slate-50 rounded-lg sm:col-span-2">
+                            <i class="fa-solid fa-clock text-2xl text-slate-600 mr-4"></i>
+                            <div>
+                                <p class="text-sm text-slate-500 font-semibold">Horario de Atención</p>
+                                <p class="font-bold text-brand-dark">Lunes a Viernes: 9:00 AM - 7:00 PM</p>
+                                <p class="text-sm text-slate-600">Sábados: 9:00 AM - 2:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="nombre" class="block text-sm font-medium text-slate-700 mb-1">Nombre</label>
+                                <input type="text" id="nombre" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="Tu nombre" required>
+                            </div>
+                            <div>
+                                <label for="telefono" class="block text-sm font-medium text-slate-700 mb-1">Teléfono</label>
+                                <input type="tel" id="telefono" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="Tu número" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="auto" class="block text-sm font-medium text-slate-700 mb-1">Vehículo (Marca/Modelo/Año)</label>
+                            <input type="text" id="auto" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="Ej: Nissan Versa 2018">
+                        </div>
+                        <div>
+                            <label for="mensaje" class="block text-sm font-medium text-slate-700 mb-1">¿Cómo podemos ayudarte?</label>
+                            <textarea id="mensaje" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all" placeholder="Describe el problema de tu auto..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-primary hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-all shadow-md hover:shadow-lg">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Mapa -->
+                <div class="h-full min-h-[400px] bg-slate-200 rounded-2xl overflow-hidden shadow-inner relative">
+                    <!-- Placeholder del Mapa -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240864.1642144673!2d-99.1276611!3d19.4326077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0026db097507%3A0x54061076265ee841!2sCiudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1715000000000!5m2!1ses!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de ubicación del taller"></iframe>
+                    
+                    <div class="absolute bottom-4 left-4 right-4 bg-white p-4 rounded-lg shadow-lg max-w-sm">
+                        <h4 class="font-bold text-brand-dark"><i class="fa-solid fa-location-dot text-brand-accent mr-2"></i>AutoFix Pro</h4>
+                        <p class="text-sm text-slate-600">Av. Principal 123, Colonia Centro.</p>
+                        <a href="https://maps.google.com" target="_blank" class="text-xs text-brand-primary font-bold hover:underline mt-2 inline-block">Ver indicaciones en Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPACIO PROMOCIONAL DESARROLLADOR -->
+    <section class="py-12 bg-white border-y border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full border border-brand-primary flex items-center justify-center text-brand-primary">
+                        <i class="fa-solid fa-desktop text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-brand-dark font-semibold text-sm">¿Deseas una presencia digital de este nivel?</p>
+                        <p class="text-slate-500 text-xs">Ponte en contacto con el desarrollador.</p>
+                    </div>
+                </div>
+                <a href="https://turin10ro.github.io/turin-developer/" 
+                    target="_blank" 
+                    class="px-8 py-3 border border-brand-dark text-brand-dark font-bold text-[10px] uppercase tracking-widest hover:bg-brand-dark hover:text-white transition-all">
+                    Visitar Portafolio de Turin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-slate-400 py-12 border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Columna 1 -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-gear text-brand-accent text-2xl"></i>
+                        <span class="font-heading text-xl text-white tracking-wide">AUTO<span class="text-brand-primary">FIX</span></span>
+                    </div>
+                    <p class="text-sm mb-6 max-w-sm">Dedicados a mantener tu vehículo seguro y eficiente. Somos tu taller de confianza en la zona con más de 10 años de experiencia.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-primary flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-primary flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-primary flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2 -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#inicio" class="hover:text-brand-primary transition-colors">Inicio</a></li>
+                        <li><a href="#servicios" class="hover:text-brand-primary transition-colors">Servicios</a></li>
+                        <li><a href="#beneficios" class="hover:text-brand-primary transition-colors">Nosotros</a></li>
+                        <li><a href="#contacto" class="hover:text-brand-primary transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3 -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-brand-primary transition-colors">Aviso de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-brand-primary transition-colors">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2024 AutoFix Pro. Todos los derechos reservados.</p>
+                <p class="mt-2 md:mt-0">Diseñado para alto rendimiento.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante de WhatsApp (Visible solo en móvil al hacer scroll) -->
+    <a href="https://wa.me/5512345678" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform hover:scale-110 animate-bounce md:animate-none">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Notification Toast (Oculto por defecto) -->
+    <div id="toast" class="fixed top-24 right-5 bg-white border-l-4 border-green-500 text-slate-800 px-6 py-4 rounded shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex items-center">
+        <i class="fa-solid fa-check-circle text-green-500 text-xl mr-3"></i>
+        <div>
+            <h4 class="font-bold text-sm">¡Mensaje Enviado!</h4>
+            <p class="text-xs text-slate-500">Te contactaremos a la brevedad.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Lógica -->
+    <script>
+        // Toggle Menú Móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')){
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        function closeMenu() {
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+
+        // Manejo del Formulario (Simulación)
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simular envío
+            const button = this.querySelector('button');
+            const originalText = button.innerText;
+            
+            button.disabled = true;
+            button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            
+            setTimeout(() => {
+                // Mostrar Toast
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-x-full');
+                
+                // Resetear form
+                this.reset();
+                button.disabled = false;
+                button.innerText = originalText;
+                
+                // Ocultar Toast después de 3 segundos
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full');
+                }, 4000);
+            }, 1500);
+        });
+
+        // Efecto de sombra en header al hacer scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>

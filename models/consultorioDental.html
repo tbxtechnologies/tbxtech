@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonrisa Vital - Clínica Dental Especializada</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dental: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Sky blue
+                            600: '#0284c7',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        accent: '#14b8a6', // Teal
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para animaciones y utilidades */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        /* Efecto de imagen antes/despues */
+        .comparison-card:hover .after-img {
+            opacity: 1;
+        }
+        .after-img {
+            transition: opacity 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-white">
+
+    <!-- Notificación Toast (Oculta por defecto) -->
+    <div id="toast" class="fixed top-5 right-5 bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl transform translate-x-full transition-transform duration-300 z-50 flex items-center gap-3">
+        <i class="fas fa-check-circle text-xl"></i>
+        <div>
+            <h4 class="font-bold">¡Solicitud Enviada!</h4>
+            <p class="text-sm">Te contactaremos pronto para confirmar.</p>
+        </div>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-md shadow-sm z-40 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fas fa-tooth text-dental-600 text-3xl"></i>
+                    <span class="font-bold text-2xl text-gray-800">Sonrisa<span class="text-dental-600">Vital</span></span>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-600 hover:text-dental-600 font-medium transition">Inicio</a>
+                    <a href="#dr" class="text-gray-600 hover:text-dental-600 font-medium transition">El Especialista</a>
+                    <a href="#tratamientos" class="text-gray-600 hover:text-dental-600 font-medium transition">Tratamientos</a>
+                    <a href="#casos" class="text-gray-600 hover:text-dental-600 font-medium transition">Antes y Después</a>
+                    <a href="#contacto" class="bg-dental-600 text-white px-5 py-2.5 rounded-full font-medium hover:bg-dental-800 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Agendar Cita
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-dental-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#inicio" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-dental-600 hover:bg-dental-50">Inicio</a>
+                <a href="#dr" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-dental-600 hover:bg-dental-50">El Especialista</a>
+                <a href="#tratamientos" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-dental-600 hover:bg-dental-50">Tratamientos</a>
+                <a href="#casos" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-dental-600 hover:bg-dental-50">Casos de Éxito</a>
+                <a href="#contacto" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-dental-600 font-bold bg-dental-50">Agendar Cita</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2068" alt="Consultorio Dental Moderno" class="w-full h-full object-cover opacity-10">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-section">
+                    <div class="inline-block px-4 py-1 rounded-full bg-dental-100 text-dental-800 text-sm font-semibold mb-6">
+                        <i class="fas fa-star text-yellow-500 mr-2"></i>Clínica Dental #1 en la Ciudad
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                        Tu mejor sonrisa comienza <span class="text-dental-600 relative">aquí
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-dental-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                            </svg>
+                        </span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Cuidamos de tu salud bucal con tecnología de vanguardia y un trato humano excepcional. Desde limpiezas hasta implantes complejos.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contacto" class="px-8 py-4 bg-dental-600 text-white rounded-lg font-semibold shadow-lg hover:bg-dental-800 hover:shadow-xl transition transform hover:-translate-y-1 text-center">
+                            Agendar Consulta
+                        </a>
+                        <a href="#tratamientos" class="px-8 py-4 bg-white text-dental-600 border-2 border-dental-600 rounded-lg font-semibold hover:bg-dental-50 transition text-center">
+                            Ver Servicios
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 grid grid-cols-3 gap-6 border-t pt-8 border-gray-200">
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">15+</p>
+                            <p class="text-sm text-gray-500">Años Experiencia</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">2k+</p>
+                            <p class="text-sm text-gray-500">Pacientes Felices</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold text-gray-900">100%</p>
+                            <p class="text-sm text-gray-500">Garantía</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative fade-in-section hidden md:block">
+                    <div class="absolute -top-4 -right-4 w-72 h-72 bg-accent/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-4 -left-4 w-72 h-72 bg-dental-500/20 rounded-full blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1000" alt="Doctora sonriendo" class="relative rounded-2xl shadow-2xl w-full object-cover h-[600px]">
+                    
+                    <!-- Tarjeta Flotante -->
+                    <div class="absolute bottom-10 left-[-20px] bg-white p-4 rounded-xl shadow-lg flex items-center gap-4 animate-bounce duration-[3000ms]">
+                        <div class="bg-green-100 p-3 rounded-full text-green-600">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Próxima disponibilidad</p>
+                            <p class="font-bold text-gray-800">Hoy, 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dr. Info Section -->
+    <section id="dr" class="py-20 bg-dental-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 fade-in-section">
+                     <div class="relative">
+                        <div class="absolute inset-0 border-4 border-dental-600 transform translate-x-4 translate-y-4 rounded-xl"></div>
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=1000" alt="Dr. Alejandro Vega" class="relative rounded-xl shadow-lg w-full z-10">
+                     </div>
+                </div>
+                <div class="w-full md:w-1/2 fade-in-section">
+                    <h2 class="text-dental-600 font-bold tracking-wide uppercase text-sm mb-2">Conoce al Experto</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Dr. Alejandro Vega</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Egresado con honores de la Universidad Nacional, el Dr. Vega cuenta con más de 15 años de experiencia en odontología estética y restauradora. Su filosofía se basa en la <strong>odontología mínimamente invasiva</strong>, preservando al máximo la estructura natural del diente.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-accent mr-3"></i> Especialista en Ortodoncia Invisible
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-accent mr-3"></i> Miembro de la Asociación Dental Americana
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <i class="fas fa-check-circle text-accent mr-3"></i> Certificación en Implantes Dentales Avanzados
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-4">
+                        <img src="https://via.placeholder.com/100x50?text=Firma" alt="Firma" class="opacity-50 h-10">
+                        <div class="h-10 w-px bg-gray-300"></div>
+                        <p class="italic text-gray-500">Director Médico</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="tratamientos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Tratamientos Integrales</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Utilizamos tecnología de última generación para garantizar resultados precisos, estéticos y duraderos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group fade-in-section">
+                    <div class="w-14 h-14 bg-dental-100 rounded-lg flex items-center justify-center text-dental-600 text-2xl mb-6 group-hover:bg-dental-600 group-hover:text-white transition">
+                        <i class="fas fa-teeth"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Limpieza Avanzada</h3>
+                    <p class="text-gray-500 mb-4 text-sm leading-relaxed">Eliminación profunda de sarro y placa bacteriana con ultrasonido indoloro para prevenir enfermedades periodontales.</p>
+                    <a href="#contacto" class="text-dental-600 font-semibold text-sm hover:underline">Saber más <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group fade-in-section">
+                    <div class="w-14 h-14 bg-dental-100 rounded-lg flex items-center justify-center text-dental-600 text-2xl mb-6 group-hover:bg-dental-600 group-hover:text-white transition">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Blanqueamiento</h3>
+                    <p class="text-gray-500 mb-4 text-sm leading-relaxed">Aclara el tono de tus dientes hasta 8 tonos en una sola sesión con nuestra tecnología LED de baja sensibilidad.</p>
+                    <a href="#contacto" class="text-dental-600 font-semibold text-sm hover:underline">Saber más <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group fade-in-section">
+                    <div class="w-14 h-14 bg-dental-100 rounded-lg flex items-center justify-center text-dental-600 text-2xl mb-6 group-hover:bg-dental-600 group-hover:text-white transition">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ortodoncia Invisible</h3>
+                    <p class="text-gray-500 mb-4 text-sm leading-relaxed">Alineadores transparentes (Invisalign) hechos a medida. Nadie notará que estás arreglando tu sonrisa.</p>
+                    <a href="#contacto" class="text-dental-600 font-semibold text-sm hover:underline">Saber más <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group fade-in-section">
+                    <div class="w-14 h-14 bg-dental-100 rounded-lg flex items-center justify-center text-dental-600 text-2xl mb-6 group-hover:bg-dental-600 group-hover:text-white transition">
+                        <i class="fas fa-screw"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Implantes Dentales</h3>
+                    <p class="text-gray-500 mb-4 text-sm leading-relaxed">Recupera la funcionalidad y estética completa con implantes de titanio de grado médico garantizados.</p>
+                    <a href="#contacto" class="text-dental-600 font-semibold text-sm hover:underline">Saber más <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group fade-in-section">
+                    <div class="w-14 h-14 bg-dental-100 rounded-lg flex items-center justify-center text-dental-600 text-2xl mb-6 group-hover:bg-dental-600 group-hover:text-white transition">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Odontopediatría</h3>
+                    <p class="text-gray-500 mb-4 text-sm leading-relaxed">Atención especializada para niños en un ambiente divertido y sin miedo, cuidando sus dientes desde el inicio.</p>
+                    <a href="#contacto" class="text-dental-600 font-semibold text-sm hover:underline">Saber más <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <!-- Servicio 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition duration-300 group fade-in-section">
+                    <div class="w-14 h-14 bg-dental-100 rounded-lg flex items-center justify-center text-dental-600 text-2xl mb-6 group-hover:bg-dental-600 group-hover:text-white transition">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Urgencias 24/7</h3>
+                    <p class="text-gray-500 mb-4 text-sm leading-relaxed">Sabemos que el dolor no espera. Contamos con servicio de guardia para atender emergencias dentales.</p>
+                    <a href="#contacto" class="text-dental-600 font-semibold text-sm hover:underline">Saber más <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casos de Exito (Antes y Después) -->
+    <section id="casos" class="py-20 bg-dental-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Resultados Reales</h2>
+                <p class="text-gray-600">Pasa el cursor (o toca) sobre las imágenes para ver la transformación.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Caso 1 -->
+                <div class="fade-in-section">
+                    <div class="bg-white p-4 rounded-xl shadow-md">
+                        <div class="relative w-full h-64 overflow-hidden rounded-lg comparison-card cursor-pointer group">
+                            <!-- Imagen Antes -->
+                            <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&q=80&w=1000" alt="Dientes antes" class="absolute top-0 left-0 w-full h-full object-cover">
+                            <div class="absolute top-4 left-4 bg-gray-900/70 text-white px-3 py-1 rounded text-xs font-bold uppercase z-10">Antes</div>
+                            
+                            <!-- Imagen Despues (se muestra en hover) -->
+                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f72?auto=format&fit=crop&q=80&w=1000" alt="Dientes despues" class="absolute top-0 left-0 w-full h-full object-cover after-img opacity-0 group-hover:opacity-100">
+                            <div class="absolute top-4 right-4 bg-dental-600/90 text-white px-3 py-1 rounded text-xs font-bold uppercase z-20 opacity-0 group-hover:opacity-100 transition-opacity">Después</div>
+
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-0 pointer-events-none">
+                                <span class="bg-black/50 text-white px-4 py-2 rounded-full">Ver Resultado</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-bold text-lg text-gray-800">Diseño de Sonrisa</h4>
+                            <p class="text-sm text-gray-500">Tratamiento de carillas de porcelana y blanqueamiento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caso 2 -->
+                <div class="fade-in-section">
+                    <div class="bg-white p-4 rounded-xl shadow-md">
+                        <div class="relative w-full h-64 overflow-hidden rounded-lg comparison-card cursor-pointer group">
+                            <!-- Imagen Antes -->
+                            <img src="https://plus.unsplash.com/premium_photo-1661759535652-3209bd3c9dc2?auto=format&fit=crop&q=80&w=1000" alt="Ortodoncia antes" class="absolute top-0 left-0 w-full h-full object-cover">
+                            <div class="absolute top-4 left-4 bg-gray-900/70 text-white px-3 py-1 rounded text-xs font-bold uppercase z-10">Antes</div>
+                            
+                            <!-- Imagen Despues -->
+                            <img src="https://images.unsplash.com/photo-1588776813186-6bd6c55e9754?auto=format&fit=crop&q=80&w=1000" alt="Ortodoncia despues" class="absolute top-0 left-0 w-full h-full object-cover after-img opacity-0 group-hover:opacity-100">
+                            <div class="absolute top-4 right-4 bg-dental-600/90 text-white px-3 py-1 rounded text-xs font-bold uppercase z-20 opacity-0 group-hover:opacity-100 transition-opacity">Después</div>
+                        </div>
+                        <div class="mt-4">
+                            <h4 class="font-bold text-lg text-gray-800">Ortodoncia Invisible</h4>
+                            <p class="text-sm text-gray-500">Corrección de mordida en 14 meses sin brackets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Agenda/Contacto -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Formulario -->
+                <div class="fade-in-section">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Agenda tu Cita</h2>
+                    <p class="text-gray-600 mb-8">Déjanos tus datos y te confirmaremos el horario disponible.</p>
+                    
+                    <form id="booking-form" class="space-y-6 bg-white rounded-xl">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-dental-500 focus:bg-white focus:ring-2 focus:ring-dental-200 outline-none transition" placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-dental-500 focus:bg-white focus:ring-2 focus:ring-dental-200 outline-none transition" placeholder="Ej. 55 1234 5678">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-dental-500 focus:bg-white focus:ring-2 focus:ring-dental-200 outline-none transition" placeholder="juan@ejemplo.com">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Tratamiento de Interés</label>
+                                <select id="service" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-dental-500 focus:bg-white focus:ring-2 focus:ring-dental-200 outline-none transition">
+                                    <option>Revisión General</option>
+                                    <option>Limpieza</option>
+                                    <option>Blanqueamiento</option>
+                                    <option>Ortodoncia</option>
+                                    <option>Implantes</option>
+                                    <option>Dolor / Emergencia</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Fecha Preferida</label>
+                                <input type="date" id="date" required class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-dental-500 focus:bg-white focus:ring-2 focus:ring-dental-200 outline-none transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje (Opcional)</label>
+                            <textarea id="message" rows="3" class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-dental-500 focus:bg-white focus:ring-2 focus:ring-dental-200 outline-none transition" placeholder="Cuéntanos más sobre tu consulta..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-dental-600 text-white font-bold py-4 rounded-lg shadow-lg hover:bg-dental-800 transition transform hover:-translate-y-1">
+                            Confirmar Solicitud
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info y Ubicación -->
+                <div class="fade-in-section">
+                    <div class="bg-dental-50 p-8 rounded-2xl mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Horarios de Atención</h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center border-b border-dental-200 pb-2">
+                                <span class="text-gray-600">Lunes - Viernes</span>
+                                <span class="font-bold text-dental-800">9:00 AM - 7:00 PM</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-dental-200 pb-2">
+                                <span class="text-gray-600">Sábados</span>
+                                <span class="font-bold text-dental-800">9:00 AM - 2:00 PM</span>
+                            </li>
+                            <li class="flex justify-between items-center text-red-500">
+                                <span>Domingos</span>
+                                <span>Cerrado</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-6">
+                         <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-dental-100 rounded-full flex items-center justify-center text-dental-600 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Ubicación</h4>
+                                <p class="text-gray-600">Av. Reforma 222, Piso 4, Consultorio 405<br>Ciudad de México, CDMX</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-dental-100 rounded-full flex items-center justify-center text-dental-600 flex-shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Teléfono</h4>
+                                <p class="text-gray-600">+52 (55) 1234 5678</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-dental-100 rounded-full flex items-center justify-center text-dental-600 flex-shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Email</h4>
+                                <p class="text-gray-600">citas@sonrisavital.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mapa Placeholder (Estático para evitar API Keys) -->
+                    <div class="mt-8 rounded-xl overflow-hidden shadow-lg h-48 bg-gray-200 relative group">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition" alt="Mapa">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button class="bg-white px-4 py-2 rounded-lg shadow font-bold text-sm text-dental-600 hover:bg-gray-50">
+                                <i class="fas fa-map-marked-alt mr-2"></i> Abrir en Google Maps
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPACIO PROMOCIONAL DESARROLLADOR -->
+    <section class="py-12 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full border border-amber-500 flex items-center justify-center text-amber-600 bg-white shadow-sm">
+                        <i class="fas fa-desktop text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-900 font-semibold text-sm">¿Deseas una presencia digital de este nivel?</p>
+                        <p class="text-gray-500 text-xs">Ponte en contacto con el desarrollador.</p>
+                    </div>
+                </div>
+                <a href="https://turin10ro.github.io/turin-developer/" 
+                   target="_blank" 
+                   class="px-8 py-3 border border-gray-900 text-gray-900 font-bold text-[10px] uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-all rounded">
+                    Visitar Portafolio de Turin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-tooth text-dental-500 text-2xl"></i>
+                        <span class="font-bold text-xl">Sonrisa<span class="text-dental-500">Vital</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Transformando vidas a través de sonrisas saludables y brillantes.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Enlaces</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#inicio" class="hover:text-white transition">Inicio</a></li>
+                        <li><a href="#tratamientos" class="hover:text-white transition">Tratamientos</a></li>
+                        <li><a href="#dr" class="hover:text-white transition">Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Aviso de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Síguenos</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-dental-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-dental-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-dental-600 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                &copy; 2024 Sonrisa Vital. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // --- Navbar Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // --- Intersection Observer for Animations ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animar solo una vez
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Form Validation & Toast ---
+        const form = document.getElementById('booking-form');
+        const toast = document.getElementById('toast');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validación simple
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            if(name.length < 3) {
+                alert("Por favor ingresa un nombre válido.");
+                return;
+            }
+            if(phone.length < 10) {
+                alert("Por favor ingresa un número de teléfono válido (10 dígitos).");
+                return;
+            }
+
+            // Simular envío
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+            setTimeout(() => {
+                // Reset form
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+
+                // Show toast
+                toast.classList.remove('translate-x-full');
+                
+                // Hide toast after 4 seconds
+                setTimeout(() => {
+                    toast.classList.add('translate-x-full');
+                }, 4000);
+
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

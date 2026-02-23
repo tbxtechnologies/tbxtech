@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>UI Lab – Design Playground</title>
+    <!-- Fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           1. TOKENS & RESET
+           ======================================== */
+        :root {
+            /* Editor UI Colors */
+            --ui-bg: #0f172a;
+            --ui-sidebar: #1e293b;
+            --ui-border: #334155;
+            --ui-text: #f8fafc;
+            --ui-text-muted: #94a3b8;
+            --ui-accent: #3b82f6;
+
+            /* Playground Defaults */
+            --pg-primary: #6366f1;
+            --pg-bg: #ffffff;
+            --pg-surface: #f8fafc;
+            --pg-text: #0f172a;
+            --pg-text-muted: #64748b;
+            --pg-border: #e2e8f0;
+            
+            --pg-font-base: 'Inter', sans-serif;
+            --pg-radius: 8px;
+            --pg-spacing: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ui-bg);
+            color: var(--ui-text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--ui-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--ui-border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--ui-text-muted); }
+
+        /* ========================================
+           2. HEADER
+           ======================================== */
+        .app-header {
+            height: 60px;
+            flex-shrink: 0; /* No encoger */
+            border-bottom: 1px solid var(--ui-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            background: var(--ui-sidebar);
+            z-index: 20;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .logo span { color: var(--ui-accent); }
+
+        .app-actions { display: flex; gap: 8px; }
+        .app-actions button {
+            background: var(--ui-border);
+            border: 1px solid transparent;
+            color: var(--ui-text);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .app-actions button.primary {
+            background: var(--ui-accent);
+            color: white;
+        }
+        .app-actions button:hover { filter: brightness(1.1); }
+
+        /* ========================================
+           3. MAIN LAYOUT (Fixed Sidebar + Scrollable Preview)
+           ======================================== */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden; /* Importante para que el scroll sea interno */
+        }
+
+        /* Sidebar: Fixed width on desktop, scrollable vertically */
+        .sidebar {
+            width: 300px;
+            background: var(--ui-sidebar);
+            border-right: 1px solid var(--ui-border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex-shrink: 0;
+            padding: 24px;
+        }
+
+        /* Preview Container: Takes remaining space */
+        .preview-container {
+            flex: 1;
+            background: #000;
+            position: relative;
+            background-image: radial-gradient(var(--ui-border) 1px, transparent 1px);
+            background-size: 24px 24px;
+            overflow-y: auto; /* El scroll ocurre aquí */
+            padding: 40px;
+            display: flex;
+            align-items: flex-start; /* Evita que se corte arriba si es muy alto */
+            justify-content: center;
+        }
+
+        /* ========================================
+           4. CONTROLS
+           ======================================== */
+        .control-group { margin-bottom: 28px; }
+        .control-group h3 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ui-text-muted);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .control-item { margin-bottom: 16px; }
+        .control-item label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            color: var(--ui-text);
+        }
+        .value-display {
+            color: var(--ui-text-muted);
+            font-family: monospace;
+            font-size: 0.75rem;
+        }
+
+        /* Inputs */
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 100%;
+            height: 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { 
+            border: 1px solid var(--ui-border); 
+            border-radius: 6px; 
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+            margin: 8px 0;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: var(--ui-border);
+            border-radius: 2px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: var(--ui-accent);
+            margin-top: -6px;
+            cursor: pointer;
+            box-shadow: 0 0 0 2px var(--ui-sidebar);
+        }
+
+        select {
+            width: 100%;
+            padding: 8px 12px;
+            background: var(--ui-bg);
+            border: 1px solid var(--ui-border);
+            color: var(--ui-text);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           5. THE PREVIEW CARD
+           ======================================== */
+        .preview-wrapper {
+            width: 100%;
+            max-width: 800px;
+            /* Eliminamos height fijo para que crezca con el contenido */
+            min-height: 500px; 
+            background-color: var(--pg-bg);
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: background-color 0.2s, color 0.2s;
+            
+            /* Isolation Scope */
+            color: var(--pg-text);
+            font-family: var(--pg-font-base);
+            
+            /* Ensure it doesn't get squashed */
+            flex-shrink: 0; 
+        }
+
+        /* Mock UI Elements */
+        .mock-nav {
+            padding: var(--pg-spacing);
+            border-bottom: 1px solid var(--pg-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--pg-surface);
+            border-radius: 12px 12px 0 0; /* Top rounded corners match wrapper */
+        }
+        .mock-logo { font-weight: 700; color: var(--pg-primary); }
+        .mock-links { display: flex; gap: var(--pg-spacing); font-size: 0.9rem; }
+        
+        .mock-hero {
+            padding: calc(var(--pg-spacing) * 3) var(--pg-spacing);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .mock-hero h1 {
+            font-size: 2rem;
+            margin-bottom: var(--pg-spacing);
+            line-height: 1.2;
+            color: var(--pg-text);
+        }
+        .mock-hero p {
+            color: var(--pg-text-muted);
+            line-height: 1.6;
+            margin-bottom: calc(var(--pg-spacing) * 2);
+        }
+
+        .mock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: calc(var(--pg-spacing) * 1.5);
+            padding: calc(var(--pg-spacing) * 2);
+            background: var(--pg-surface);
+            border-radius: 0 0 12px 12px; /* Bottom rounded corners */
+        }
+
+        .mock-card {
+            background: var(--pg-bg);
+            padding: var(--pg-spacing);
+            border-radius: var(--pg-radius);
+            border: 1px solid var(--pg-border);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        .mock-card h3 { margin-bottom: 8px; font-size: 1rem; }
+        .mock-card p { font-size: 0.85rem; color: var(--pg-text-muted); margin-bottom: 16px; line-height: 1.5; }
+
+        .mock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--pg-primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: var(--pg-radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .mock-btn:hover { opacity: 0.9; }
+        .mock-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--pg-border);
+            color: var(--pg-text);
+        }
+
+        .mock-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--pg-border);
+            border-radius: var(--pg-radius);
+            background: var(--pg-bg);
+            color: var(--pg-text);
+            margin-bottom: 12px;
+            font-family: inherit;
+        }
+
+        /* ========================================
+           6. RESPONSIVE / MOBILE
+           ======================================== */
+        @media (max-width: 768px) {
+            body { height: auto; min-height: 100vh; }
+            
+            .main-layout {
+                flex-direction: column;
+                overflow: visible; /* Permitir scroll nativo en móvil */
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--ui-border);
+                max-height: 300px; /* Limitar altura en móvil */
+                padding: 16px;
+            }
+
+            .preview-container {
+                padding: 20px 10px;
+                overflow: visible;
+                min-height: 600px;
+            }
+            
+            .preview-wrapper {
+                box-shadow: none; /* Simplificar en móvil */
+                min-height: auto;
+            }
+        }
+
+        /* ========================================
+           7. MODAL
+           ======================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            backdrop-filter: blur(2px);
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: var(--ui-sidebar);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--ui-border);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            margin: 16px 0;
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid var(--ui-border);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="logo">
+            <span>◆</span> UI Lab
+        </div>
+        <div class="app-actions">
+            <button onclick="resetDefaults()">Reiniciar</button>
+            <button class="primary" onclick="exportCSS()">Exportar CSS</button>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="control-group">
+                <h3>Colores Base</h3>
+                <div class="control-item">
+                    <label>Primario <span class="value-display" id="val-primary"></span></label>
+                    <input type="color" name="pg-primary" id="in-primary" value="#6366f1">
+                </div>
+                <div class="control-item">
+                    <label>Fondo <span class="value-display" id="val-bg"></span></label>
+                    <input type="color" name="pg-bg" id="in-bg" value="#ffffff">
+                </div>
+                <div class="control-item">
+                    <label>Texto <span class="value-display" id="val-text"></span></label>
+                    <input type="color" name="pg-text" id="in-text" value="#0f172a">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Elementos UI</h3>
+                <div class="control-item">
+                    <label>Superficie <span class="value-display" id="val-surface"></span></label>
+                    <input type="color" name="pg-surface" id="in-surface" value="#f8fafc">
+                </div>
+                <div class="control-item">
+                    <label>Bordes <span class="value-display" id="val-border"></span></label>
+                    <input type="color" name="pg-border" id="in-border" value="#e2e8f0">
+                </div>
+                <div class="control-item">
+                    <label>Texto Secundario <span class="value-display" id="val-text-muted"></span></label>
+                    <input type="color" name="pg-text-muted" id="in-text-muted" value="#64748b">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Forma & Espacio</h3>
+                <div class="control-item">
+                    <label>Redondeo (Radius) <span class="value-display" id="val-radius">8px</span></label>
+                    <input type="range" name="pg-radius" id="in-radius" min="0" max="24" value="8" data-unit="px">
+                </div>
+                <div class="control-item">
+                    <label>Espaciado (Gap) <span class="value-display" id="val-spacing">16px</span></label>
+                    <input type="range" name="pg-spacing" id="in-spacing" min="8" max="40" step="4" value="16" data-unit="px">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Tipografía</h3>
+                <div class="control-item">
+                    <select name="pg-font-base" id="in-font">
+                        <option value="'Inter', sans-serif">Inter (Clean)</option>
+                        <option value="'Georgia', serif">Georgia (Serif)</option>
+                        <option value="'Courier New', monospace">Courier (Mono)</option>
+                        <option value="system-ui, sans-serif">System UI</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Presets</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <button class="app-actions button" style="width:100%" onclick="setTheme('light')">☀️ Claro</button>
+                    <button class="app-actions button" style="width:100%" onclick="setTheme('dark')">🌙 Oscuro</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Preview -->
+        <section class="preview-container">
+            <div class="preview-wrapper" id="preview-box">
+                
+                <nav class="mock-nav">
+                    <div class="mock-logo">Brand.</div>
+                    <div class="mock-links">
+                        <span style="font-weight:500">Inicio</span>
+                        <span>Features</span>
+                        <span style="opacity:0.6">Blog</span>
+                    </div>
+                </nav>
+
+                <div class="mock-hero">
+                    <h1>Diseña interfaces escalables</h1>
+                    <p>Ajusta las variables a la izquierda y visualiza los cambios instantáneamente en este entorno aislado.</p>
+                    <div style="display:flex; gap: 10px; justify-content:center; flex-wrap: wrap;">
+                        <button class="mock-btn">Comenzar Gratis</button>
+                        <button class="mock-btn secondary">Documentación</button>
+                    </div>
+                </div>
+
+                <div class="mock-grid">
+                    <div class="mock-card">
+                        <h3>🎨 Themeable</h3>
+                        <p>Usa CSS Custom Properties para definir un sistema de diseño consistente.</p>
+                        <div style="margin-top:12px; display:flex; gap:8px;">
+                            <div style="width:20px; height:20px; background:var(--pg-primary); border-radius:50%"></div>
+                            <div style="width:20px; height:20px; background:var(--pg-text); border-radius:50%"></div>
+                            <div style="width:20px; height:20px; background:var(--pg-border); border-radius:50%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mock-card">
+                        <h3>📩 Newsletter</h3>
+                        <form onsubmit="return false">
+                            <label style="display:block; margin-bottom:4px; font-size:0.8rem; font-weight:500">Correo</label>
+                            <input type="email" class="mock-input" placeholder="nombre@empresa.com">
+                            <button class="mock-btn" style="width:100%">Suscribirse</button>
+                        </form>
+                    </div>
+
+                    <div class="mock-card">
+                        <h3>⚡️ Performance</h3>
+                        <p>Sin frameworks pesados. Solo JavaScript nativo manipulando el DOM eficientemente.</p>
+                    </div>
+                </div>
+
+                <div style="padding: 24px; text-align:center; color: var(--pg-text-muted); font-size: 0.75rem; border-top: 1px solid var(--pg-border); background: var(--pg-surface); border-radius: 0 0 12px 12px;">
+                    UI Lab Playground Preview
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="export-modal">
+        <div class="modal">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3 style="color:var(--ui-text)">CSS Generado</h3>
+                <button onclick="closeModal()" style="background:none; border:none; color:var(--ui-text-muted); cursor:pointer; font-size:1.2rem;">&times;</button>
+            </div>
+            <p style="font-size:0.9rem; color:var(--ui-text-muted)">Copia esto en tu archivo <code>styles.css</code>:</p>
+            <div class="code-block" id="css-output"></div>
+            <div style="display:flex; justify-content:flex-end;">
+                <button onclick="copyToClipboard()" class="app-actions button primary">Copiar al Portapapeles</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const root = document.documentElement;
+        
+        // Defaults for Reset
+        const defaults = {
+            'pg-primary': '#6366f1',
+            'pg-bg': '#ffffff',
+            'pg-surface': '#f8fafc',
+            'pg-text': '#0f172a',
+            'pg-text-muted': '#64748b',
+            'pg-border': '#e2e8f0',
+            'pg-radius': '8',
+            'pg-spacing': '16',
+            'pg-font-base': "'Inter', sans-serif"
+        };
+
+        function init() {
+            // Load from LS or Defaults
+            const saved = JSON.parse(localStorage.getItem('ui-lab-v2') || 'null');
+            if (saved) {
+                applyConfig(saved);
+            } else {
+                applyConfig(defaults);
+            }
+
+            // Listeners
+            document.querySelectorAll('input, select').forEach(el => {
+                el.addEventListener('input', (e) => {
+                    updateVariable(e.target.name, e.target.value, e.target.dataset.unit || '');
+                    saveState();
+                });
+            });
+
+            // Close modal on outside click
+            window.onclick = (e) => {
+                if(e.target === document.getElementById('export-modal')) closeModal();
+            }
+        }
+
+        function updateVariable(name, value, unit) {
+            // 1. Update CSS Variable
+            root.style.setProperty(`--${name}`, value + unit);
+
+            // 2. Update Input Value (Visual Sync)
+            const input = document.querySelector(`[name="${name}"]`);
+            if (input && input.value !== value) input.value = value;
+
+            // 3. Update Text Label (if exists)
+            const shortName = name.replace('pg-', '');
+            const label = document.getElementById(`val-${shortName}`);
+            if (label) label.textContent = value + unit;
+        }
+
+        function applyConfig(config) {
+            Object.entries(config).forEach(([key, val]) => {
+                // Determine unit (px) if needed based on key name
+                let unit = '';
+                if (key === 'pg-radius' || key === 'pg-spacing') unit = 'px';
+                
+                updateVariable(key, val, unit);
+            });
+        }
+
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('input, select').forEach(el => {
+                state[el.name] = el.value;
+            });
+            localStorage.setItem('ui-lab-v2', JSON.stringify(state));
+        }
+
+        function resetDefaults() {
+            if(confirm('¿Restaurar valores por defecto?')) {
+                localStorage.removeItem('ui-lab-v2');
+                applyConfig(defaults);
+                saveState();
+            }
+        }
+
+        function setTheme(mode) {
+            const themes = {
+                light: {
+                    'pg-bg': '#ffffff',
+                    'pg-surface': '#f8fafc',
+                    'pg-text': '#0f172a',
+                    'pg-text-muted': '#64748b',
+                    'pg-border': '#e2e8f0',
+                    'pg-primary': '#6366f1'
+                },
+                dark: {
+                    'pg-bg': '#0f172a',
+                    'pg-surface': '#1e293b',
+                    'pg-text': '#f8fafc',
+                    'pg-text-muted': '#94a3b8',
+                    'pg-border': '#334155',
+                    'pg-primary': '#818cf8'
+                }
+            };
+            
+            // Merge theme with current geometric values
+            const currentState = JSON.parse(localStorage.getItem('ui-lab-v2')) || {};
+            const newState = { ...currentState, ...themes[mode] };
+            
+            applyConfig(newState);
+            saveState();
+        }
+
+        function exportCSS() {
+            let css = `:root {\n`;
+            document.querySelectorAll('input, select').forEach(el => {
+                const unit = el.dataset.unit || '';
+                css += `  --${el.name}: ${el.value}${unit};\n`;
+            });
+            css += `}`;
+            
+            document.getElementById('css-output').textContent = css;
+            document.getElementById('export-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('export-modal').classList.remove('active');
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('css-output').textContent;
+            
+            // Fallback strategy for iframes
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                const btn = document.querySelector('.modal .primary');
+                const original = btn.textContent;
+                btn.textContent = "¡Copiado!";
+                setTimeout(() => btn.textContent = original, 2000);
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+                alert('No se pudo copiar automáticamente. Por favor selecciona el texto y presiona Ctrl+C');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Essence - Menú Interactivo</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --text-main: #1a1a1a;
+            --text-muted: #666666;
+            --accent: #c5a059; /* Gold */
+            --border: #eeeeee;
+            --card-bg: #ffffff;
+        }
+
+        .dark-theme {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #161616;
+            --text-main: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border: #262626;
+            --card-bg: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .category-btn.active {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-card:hover .card-image-container img {
+            transform: scale(1.1);
+        }
+
+        #theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #filter-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        #filter-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header & Navegación -->
+    <header class="fixed w-full z-50 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-[var(--border)] transition-colors duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-serif font-bold tracking-tighter text-[var(--accent)]">
+                L'ESSENCE
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-widest">
+                <a href="#menu" class="hover:text-[var(--accent)] transition-colors">Menú</a>
+                <a href="#" class="hover:text-[var(--accent)] transition-colors">Nosotros</a>
+                <!-- El botón de reservas ha sido removido según solicitud -->
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <div id="theme-toggle" onclick="toggleTheme()">
+                    <i class="ph ph-moon text-xl" id="theme-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6 text-center bg-[var(--bg-secondary)]">
+        <h1 class="text-5xl md:text-8xl mb-6 animate-fade font-serif">Arte en el Plato</h1>
+        <p class="text-[var(--text-muted)] max-w-2xl mx-auto animate-fade text-lg" style="animation-delay: 0.2s">
+            Explora una sinfonía de sabores donde la técnica vanguardista se encuentra con el respeto por el producto local.
+        </p>
+    </section>
+
+    <!-- Filtros -->
+    <div class="sticky top-[72px] bg-[var(--bg-primary)] z-40 py-8 border-b border-[var(--border)]">
+        <div class="container mx-auto px-6 overflow-x-auto">
+            <div class="flex justify-center space-x-4 min-w-max pb-2" id="filter-container">
+                <button class="category-btn active" onclick="filterMenu('todos', this)">Todos</button>
+                <button class="category-btn" onclick="filterMenu('entradas', this)">Entradas</button>
+                <button class="category-btn" onclick="filterMenu('principales', this)">Platos Principales</button>
+                <button class="category-btn" onclick="filterMenu('postres', this)">Postres</button>
+                <button class="category-btn" onclick="filterMenu('bebidas', this)">Bebidas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menú Grid -->
+    <main id="menu" class="container mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="menu-grid">
+            <!-- Los items se cargan dinámicamente -->
+        </div>
+    </main>
+
+    <!-- ESPACIO PROMOCIONAL DESARROLLADOR -->
+    <section class="py-16 bg-[var(--bg-secondary)] border-y border-[var(--border)]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 bg-[var(--bg-primary)] p-8 rounded-2xl border border-[var(--border)] shadow-sm">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 rounded-2xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                        <i class="ph ph-lightning text-3xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-[var(--text-main)] font-bold text-xl">¿Tu negocio necesita este nivel?</p>
+                        <p class="text-[var(--text-muted)]">Diseño premium y funcionalidad de vanguardia.</p>
+                    </div>
+                </div>
+                <a href="https://turin10ro.github.io/turin-developer/" 
+                   target="_blank" 
+                   class="w-full md:w-auto text-center px-10 py-4 bg-[var(--text-main)] text-[var(--bg-primary)] font-bold text-xs uppercase tracking-[0.2em] hover:bg-[var(--accent)] hover:text-white transition-all rounded-full">
+                    Visitar Portafolio de Turin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-[var(--bg-primary)] text-center">
+        <div class="mb-6 text-[var(--accent)] font-serif italic text-xl">L'Essence</div>
+        <p class="text-[var(--text-muted)] text-sm max-w-xs mx-auto mb-8">
+            Abierto de Martes a Domingo. Experiencias gastronómicas exclusivas.
+        </p>
+        <p class="text-[var(--text-muted)] text-xs opacity-50">
+            &copy; 2026 L'Essence Restaurant.
+        </p>
+    </footer>
+
+    <script>
+        const menuItems = [
+            { 
+                id: 1, 
+                name: "Carpaccio de Pulpo", 
+                category: "entradas", 
+                price: "$18", 
+                desc: "Finas láminas de pulpo con aceite de pimentón de la Vera y sal negra volcánica.",
+                img: "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?auto=format&fit=crop&w=800&q=80" 
+            },
+            { 
+                id: 2, 
+                name: "Solomillo Rossini", 
+                category: "principales", 
+                price: "$34", 
+                desc: "Corte premium con medallón de foie gras, trufa negra y reducción de Oporto de 20 años.",
+                img: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?auto=format&fit=crop&w=800&q=80" 
+            },
+            { 
+                id: 3, 
+                name: "Esfera de Chocolate", 
+                category: "postres", 
+                price: "$12", 
+                desc: "Chocolate belga 70% con corazón de frutos rojos y helado artesanal de vainilla Bourbon.",
+                img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80" 
+            },
+            { 
+                id: 4, 
+                name: "Tartar de Atún", 
+                category: "entradas", 
+                price: "$20", 
+                desc: "Atún rojo de almadraba, aguacate premium, lima kaffir y emulsión de jengibre.",
+                img: "https://images.unsplash.com/photo-1546039907-7fa05f864c02?auto=format&fit=crop&w=800&q=80" 
+            },
+            { 
+                id: 5, 
+                name: "Risotto de Setas", 
+                category: "principales", 
+                price: "$26", 
+                desc: "Arroz Carnaroli cremoso con variedad de setas silvestres y lascas de parmesano de 36 meses.",
+                img: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=800&q=80" 
+            },
+            { 
+                id: 6, 
+                name: "Cóctel Signature", 
+                category: "bebidas", 
+                price: "$15", 
+                desc: "Ginebra artesanal con infusión de lavanda silvestre y cítricos del Mediterráneo.",
+                img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80" 
+            }
+        ];
+
+        function displayMenuItems(items) {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = items.map(item => `
+                <div class="menu-card animate-fade">
+                    <div class="card-image-container">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div class="absolute top-4 right-4 bg-black/40 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold">
+                            ${item.price}
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex items-center text-[10px] uppercase tracking-widest text-[var(--accent)] mb-3">
+                            <i class="ph ph-bookmark-simple mr-2"></i> ${item.category}
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold mb-3">${item.name}</h3>
+                        <p class="text-[var(--text-muted)] text-sm leading-relaxed">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filtered = category === 'todos' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+            
+            const grid = document.getElementById('menu-grid');
+            grid.style.opacity = 0;
+            
+            setTimeout(() => {
+                displayMenuItems(filtered);
+                grid.style.opacity = 1;
+            }, 300);
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.getElementById('theme-icon');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.replace('ph-moon', 'ph-sun');
+            } else {
+                icon.classList.replace('ph-sun', 'ph-moon');
+            }
+        }
+
+        window.onload = () => {
+            displayMenuItems(menuItems);
+        };
+    </script>
+</body>
+</html>
