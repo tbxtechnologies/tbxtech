@@ -35,30 +35,30 @@
         .glass-nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); }
 
         /* ===== Scrollbar Personalizado ===== */
-        
+
         /* Ancho del scrollbar */
         ::-webkit-scrollbar {
-          width: 12px;
+        width: 12px;
         }
-        
+
         /* Fondo (track) */
         ::-webkit-scrollbar-track {
-          background: #111;
-          border-radius: 10px;
+        background: #111;
+        border-radius: 10px;
         }
-        
+
         /* Barra que se mueve (thumb) */
         ::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #00c6ff, #0072ff);
-          border-radius: 10px;
-          border: 2px solid #111;
-          transition: all 0.3s ease;
+        background: linear-gradient(180deg, #00c6ff, #0072ff);
+        border-radius: 10px;
+        border: 2px solid #111;
+        transition: all 0.3s ease;
         }
-        
+
         /* Efecto al pasar el mouse */
         ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #ff512f, #dd2476);
-          box-shadow: 0 0 10px rgba(255, 81, 47, 0.7);
+        background: linear-gradient(180deg, #ff512f, #dd2476);
+        box-shadow: 0 0 10px rgba(255, 81, 47, 0.7);
         }
     </style>
 </head>
@@ -267,7 +267,7 @@ Enviado desde tbxtechnologies.github.io`;
                 <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-nav shadow-lg py-4' : 'bg-transparent py-6'}`}>
                     <div className="container mx-auto px-6 flex justify-between items-center">
                     <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent cursor-pointer" onClick={() => window.scrollTo({top:0, behavior:'smooth'})}>
-                        TBXTECH
+                        TBXLABS
                     </div>
                     
                     {/* Desktop Menu */}
@@ -531,7 +531,7 @@ Enviado desde tbxtechnologies.github.io`;
                                 <div className="flex flex-col justify-center">
                                     <h2 className="text-3xl md:text-5xl font-bold mb-6">Empecemos tu proyecto</h2>
                                     <p className="text-slate-400 text-lg mb-8">
-                                        ¿Listo para digitalizar tu negocio? Escríbenos para cotizar, o simplemente para contarnos tu idea, también podemos ayudarte/guiarte si ya tienes una o si quieres iniciar desde cero. 
+                                        ¿Listo para digitalizar tu negocio? Escríbenos para cotizar, o simplemente para contarnos tu idea, también podemos ayudarte/guiarte si ya tienes una o si quieres iniciar desde cero.
                                     </p>
                                     
                                     <div className="space-y-6">
@@ -599,7 +599,7 @@ Enviado desde tbxtechnologies.github.io`;
                     <div className="container mx-auto px-6">
                         <div className="flex flex-col md:flex-row justify-between items-center">
                             <p className="text-slate-500 text-sm mb-4 md:mb-0">
-                                © {new Date().getFullYear()} TBXTECH | Todos los derechos reservados.
+                                © {new Date().getFullYear()} TBXLABS | Todos los derechos reservados.
                             </p>
                             <div className="flex gap-6 text-sm">
                                 <a href="acerca-de.html" className="text-slate-500 hover:text-cyan-400 transition-colors">
