@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Wellness Spa | Santuario de Lujo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'nero': '#0A0A0A',
+                        'anthracite': '#141414',
+                        'luxury-gold': '#D4AF37',
+                        'silk-cream': '#EBE5DC', /* Blanco crema suavizado, menos brillante */
+                        'sand-soft': '#DFD8CE',  /* Tono arena sutil para secciones */
+                        'soft-white': '#E6E6E6', /* Blanco mate para no lastimar la vista en modo oscuro */
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { transition: background-color 0.6s ease, color 0.6s ease; }
+        .gallery-item { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .gallery-item:hover { transform: scale(1.03); }
+        html { scroll-behavior: smooth; }
+        
+        .dark::-webkit-scrollbar { width: 8px; }
+        .dark::-webkit-scrollbar-track { background: #0A0A0A; }
+        .dark::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+    </style>
+</head>
+<body class="font-sans bg-silk-cream text-nero dark:bg-nero dark:text-soft-white">
+
+    <nav class="fixed w-full z-50 bg-silk-cream/90 dark:bg-nero/90 backdrop-blur-xl border-b border-nero/5 dark:border-soft-white/5 transition-colors duration-500">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <h1 class="font-serif text-2xl font-bold tracking-[0.3em] uppercase">Aura</h1>
+            
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.2em] font-semibold opacity-70">
+                    <a href="#inicio" class="hover:text-luxury-gold transition">Inicio</a>
+                    <a href="#servicios" class="hover:text-luxury-gold transition">Servicios</a>
+                    <a href="#galeria" class="hover:text-luxury-gold transition">Galería</a>
+                </div>
+
+                <button onclick="document.documentElement.classList.toggle('dark')" class="p-2 border border-nero/10 dark:border-soft-white/10 rounded-full hover:border-luxury-gold transition-all">
+                    <i class="ph ph-sun-dim block dark:hidden text-xl text-nero"></i>
+                    <i class="ph ph-moon-stars hidden dark:block text-xl text-luxury-gold"></i>
+                </button>
+
+                <a href="#reservar" class="border border-luxury-gold text-luxury-gold px-8 py-2 text-[10px] uppercase tracking-widest hover:bg-luxury-gold hover:text-white dark:hover:text-nero transition-all duration-300">
+                    Reservar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Imagen Hero corregida -->
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80&w=2000" alt="Spa Experience" class="w-full h-full object-cover opacity-60 dark:opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-silk-cream dark:from-nero via-transparent to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4">
+            <span class="text-luxury-gold uppercase tracking-[0.5em] text-xs mb-6 block font-bold">The Private Collection</span>
+            <h2 class="font-serif text-5xl md:text-8xl leading-tight mb-8">
+                Renueva tu cuerpo, <br>
+                <span class="italic font-normal text-luxury-gold">calma tu mente.</span>
+            </h2>
+            <div class="flex justify-center">
+                <a href="#reservar" class="relative py-4 px-12 bg-luxury-gold text-soft-white dark:text-nero font-bold uppercase text-[11px] tracking-[0.3em] hover:bg-nero dark:hover:bg-soft-white hover:text-soft-white transition-all duration-500 shadow-xl">
+                    Solicitar Cita
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-32 bg-sand-soft dark:bg-anthracite transition-colors duration-500">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-5xl mb-4">Servicios</h2>
+                <div class="w-20 h-[1px] bg-luxury-gold mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="p-10 border border-nero/5 dark:border-soft-white/5 bg-silk-cream dark:bg-nero hover:border-luxury-gold/50 transition-all group">
+                    <h3 class="font-serif text-2xl mb-4 group-hover:text-luxury-gold transition">Masaje Ancestral</h3>
+                    <p class="opacity-60 text-sm leading-relaxed mb-6">Equilibrio profundo mediante técnicas de presión controlada y calor volcánico.</p>
+                    <span class="text-luxury-gold text-xs font-bold tracking-widest">$120 — 60 MIN</span>
+                </div>
+                <div class="p-10 border border-nero/5 dark:border-soft-white/5 bg-silk-cream dark:bg-nero hover:border-luxury-gold/50 transition-all group">
+                    <h3 class="font-serif text-2xl mb-4 group-hover:text-luxury-gold transition">Cura Facial</h3>
+                    <p class="opacity-60 text-sm leading-relaxed mb-6">Tratamiento de alta gama con activos botánicos para restaurar el brillo natural.</p>
+                    <span class="text-luxury-gold text-xs font-bold tracking-widest">$145 — 75 MIN</span>
+                </div>
+                <div class="p-10 border border-nero/5 dark:border-soft-white/5 bg-silk-cream dark:bg-nero hover:border-luxury-gold/50 transition-all group">
+                    <h3 class="font-serif text-2xl mb-4 group-hover:text-luxury-gold transition">Inmersión Zen</h3>
+                    <p class="opacity-60 text-sm leading-relaxed mb-6">Experiencia completa de hidromasaje y aromaterapia en suite privada.</p>
+                    <span class="text-luxury-gold text-xs font-bold tracking-widest">$180 — 90 MIN</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-32 bg-silk-cream dark:bg-nero transition-colors duration-500">
+        <div class="container mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-luxury-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Visual Experience</span>
+                <h2 class="font-serif text-5xl">Nuestro Espacio</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-2 md:row-span-2 overflow-hidden gallery-item">
+                    <!-- Imagenes de galería corregidas -->
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecee?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Instalaciones Aura Spa">
+                </div>
+                <div class="overflow-hidden gallery-item h-64">
+                    <img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Detalle Zen">
+                </div>
+                <div class="overflow-hidden gallery-item h-64">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Terapia de masaje">
+                </div>
+                <div class="md:col-span-2 overflow-hidden gallery-item h-80">
+                    <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Interiores Relajantes">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-32 bg-sand-soft dark:bg-anthracite transition-colors duration-500">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-20">
+            <div id="reservar" class="bg-silk-cream dark:bg-nero p-12 border border-nero/5 dark:border-soft-white/5 shadow-2xl">
+                <h3 class="font-serif text-3xl mb-8">Reservar Experiencia</h3>
+                <form class="space-y-6">
+                    <input type="text" placeholder="NOMBRE" class="w-full bg-nero/5 dark:bg-soft-white/5 border-b border-nero/10 dark:border-soft-white/10 p-4 text-[10px] tracking-widest focus:border-luxury-gold focus:outline-none transition uppercase dark:text-soft-white text-nero">
+                    <input type="tel" placeholder="TELÉFONO" class="w-full bg-nero/5 dark:bg-soft-white/5 border-b border-nero/10 dark:border-soft-white/10 p-4 text-[10px] tracking-widest focus:border-luxury-gold focus:outline-none transition uppercase dark:text-soft-white text-nero">
+                    <button type="button" class="w-full bg-nero dark:bg-soft-white text-soft-white dark:text-nero font-bold py-4 uppercase text-[10px] tracking-[0.3em] hover:bg-luxury-gold dark:hover:bg-luxury-gold transition duration-500">Enviar Solicitud</button>
+                </form>
+
+                <!-- Redes Sociales -->
+                <div class="mt-10 pt-8 border-t border-nero/10 dark:border-soft-white/10">
+                    <p class="text-[10px] uppercase tracking-[0.3em] mb-6 opacity-60">Síguenos</p>
+                    <div class="flex gap-4">
+                        <a href="https://instagram.com" target="_blank" class="w-12 h-12 border border-nero/10 dark:border-soft-white/10 rounded-full flex items-center justify-center hover:border-luxury-gold hover:bg-luxury-gold/10 transition-all group">
+                            <i class="ph ph-instagram-logo text-xl opacity-60 group-hover:opacity-100 group-hover:text-luxury-gold transition"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="w-12 h-12 border border-nero/10 dark:border-soft-white/10 rounded-full flex items-center justify-center hover:border-luxury-gold hover:bg-luxury-gold/10 transition-all group">
+                            <i class="ph ph-facebook-logo text-xl opacity-60 group-hover:opacity-100 group-hover:text-luxury-gold transition"></i>
+                        </a>
+                        <a href="https://wa.me/5215512345678" target="_blank" class="w-12 h-12 border border-nero/10 dark:border-soft-white/10 rounded-full flex items-center justify-center hover:border-luxury-gold hover:bg-luxury-gold/10 transition-all group">
+                            <i class="ph ph-whatsapp-logo text-xl opacity-60 group-hover:opacity-100 group-hover:text-luxury-gold transition"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="w-12 h-12 border border-nero/10 dark:border-soft-white/10 rounded-full flex items-center justify-center hover:border-luxury-gold hover:bg-luxury-gold/10 transition-all group">
+                            <i class="ph ph-tiktok-logo text-xl opacity-60 group-hover:opacity-100 group-hover:text-luxury-gold transition"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center">
+                <h3 class="font-serif text-4xl mb-8 italic">Donde el tiempo se detiene...</h3>
+                <p class="opacity-60 mb-8 leading-relaxed">Visítanos en nuestra exclusiva ubicación. Privacidad garantizada.</p>
+                <div class="space-y-4 mb-8">
+                    <p class="flex items-center gap-4 text-sm opacity-80"><i class="ph ph-map-pin text-luxury-gold text-xl"></i> Paseo de la Reforma 250, CDMX</p>
+                    <p class="flex items-center gap-4 text-sm opacity-80"><i class="ph ph-phone text-luxury-gold text-xl"></i> +52 55 1234 5678</p>
+                    <p class="flex items-center gap-4 text-sm opacity-80"><i class="ph ph-envelope text-luxury-gold text-xl"></i> contacto@auraspa.com</p>
+                </div>
+
+                <!-- Mapa -->
+                <div class="w-full h-64 md:h-80 border border-nero/10 dark:border-soft-white/10 overflow-hidden shadow-xl">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6449087896!2d-99.17068492495896!3d19.426970981864447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sPaseo%20de%20la%20Reforma%20250%2C%20Ju%C3%A1rez%2C%20Cuauht%C3%A9moc%2C%2006600%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1234567890123!5m2!1ses!2smx" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(100%) contrast(90%);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="dark:opacity-70">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-silk-cream dark:bg-nero border-y border-nero/5 dark:border-soft-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full border border-luxury-gold flex items-center justify-center text-luxury-gold">
+                        <i class="ph ph-desktop text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">¿Deseas una presencia digital de este nivel?</p>
+                        <p class="opacity-40 text-xs">Ponte en contacto con el desarrollador.</p>
+                    </div>
+                </div>
+                <a href="https://tbxlabs.github.io/tbxlabs/"  
+                   target="_blank" 
+                   class="px-8 py-3 border border-nero dark:border-soft-white text-nero dark:text-soft-white font-bold text-[10px] uppercase tracking-widest hover:bg-luxury-gold hover:text-soft-white hover:border-luxury-gold transition-all">
+                    Visitar Portafolio de TBX LABS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-silk-cream dark:bg-nero py-12 text-center transition-colors duration-500">
+        <div class="container mx-auto px-6">
+            <h1 class="font-serif text-2xl mb-4 tracking-[0.4em]">AURA</h1>
+            <p class="text-[9px] opacity-30 uppercase tracking-[0.5em]">© 2026 Aura Wellness Spa. Luxury is Silence.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
